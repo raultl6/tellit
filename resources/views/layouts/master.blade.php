@@ -19,7 +19,7 @@
             <div id="dropdownMenu" class="dropdown-menu">
                 <a href="{{ url('/') }}" class="menu-item">🏠 Inicio</a>
                 <a href="#" class="menu-item">🔍 Explorar</a>
-                <a href="#" class="menu-item">📂 Categorías</a>
+                <a href="{{ route('categorias.index') }}" class="menu-item">📂 Categorías</a>
                 <a href="#" class="menu-item">📑 Mis Listas</a>
 
                 <a href="#" class="menu-item" style="color: var(--primary);">🔐 Login / Registro</a>

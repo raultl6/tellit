@@ -1,7 +1,10 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ContenidoController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +23,16 @@ Route::get('/', function () {
 
 Route::get('/categorias', [CategoriaController::class, 'index'])->name('categorias.index');
 
+
+Route::get('/explorar', [ContenidoController::class, 'index'])->name('contenidos.index');
+
+
+
+// La parte {slug} es el comodín, como el nombre facil (ej: inception, breaking-bad)
+Route::get('/ver/{slug}', [ContenidoController::class, 'show'])->name('contenidos.show');
+
+
+
+// Rutas de Registro
+Route::get('/registro', [AuthController::class, 'showRegister'])->name('register'); // Ver formulario
+Route::post('/registro', [AuthController::class, 'register'])->name('register.post'); // Enviar datos

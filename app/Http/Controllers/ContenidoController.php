@@ -19,4 +19,12 @@ class ContenidoController extends Controller
         // 3. Envia ambos paquetes de datos a la vista
         return view('contenidos.index', compact('contenidos', 'categorias'));
     }
+
+    public function show($slug)
+    {
+        $contenido = Contenido::where('slug', $slug)->firstOrFail();
+        return view('contenidos.show', compact('contenido'));
+    }
+
 }
+

@@ -7,15 +7,15 @@
 
         <aside class="sidebar">
             <div class="sidebar-box">
-                <h3 style="border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">Filtros</h3>
+                <h3 class="filter-title">Filtros</h3>
 
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; font-size: 0.9rem; margin-bottom: 5px;">Buscar</label>
+                <div class="filter-group">
+                    <label class="filter-label">Buscar</label>
                     <input type="text" placeholder="Título..." class="form-input">
                 </div>
 
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; font-size: 0.9rem; margin-bottom: 5px;">Género</label>
+                <div class="filter-group">
+                    <label class="filter-label">Género</label>
                     <select class="form-select">
                         <option value="">Todos</option>
                         @foreach($categorias as $categoria)
@@ -35,17 +35,16 @@
                 @foreach($contenidos as $contenido)
                     <a href="{{ route('contenidos.show', $contenido->slug) }}" class="card">
 
-                        <div class="placeholder-img"
-                            style="background-image: url('{{ $contenido->imagen_url }}'); background-size: cover; background-position: center;">
+                        <div class="placeholder-img content-card-img"
+                            style="background-image: url('{{ $contenido->imagen_url }}');">
                             @if(!$contenido->imagen_url) IMG @endif
                         </div>
 
                         <h4>{{ $contenido->titulo }}</h4>
 
-                        <div
-                            style="font-size: 0.8rem; color: #666; display: flex; justify-content: space-between; margin-top: 5px;">
+                        <div class="content-card-meta">
                             <span>{{ $contenido->año }}</span>
-                            <span style="color: #fbbf24;">★ {{ $contenido->puntuacion }}</span>
+                            <span class="card-rating">★ {{ $contenido->puntuacion }}</span>
                         </div>
                     </a>
                 @endforeach

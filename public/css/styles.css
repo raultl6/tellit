@@ -700,3 +700,86 @@ footer {
     color: #999;
     border: 1px solid #ddd;
 }
+
+/* --- Structural Styles (from master.blade.php) --- */
+
+/* Dropdown Divider */
+.dropdown-divider {
+    border-top: 1px solid #eee;
+    margin: 5px 0;
+}
+
+/* Admin Link in Dropdown */
+.admin-link {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* User Header Area */
+.user-header-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.user-avatar-container {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* User Dropdown */
+.user-dropdown-menu {
+    top: 50px;
+    right: 0;
+    min-width: 150px;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.logout-btn {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    color: #ef4444;
+}
+
+/* Login Button in Header */
+.login-btn-header {
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Footer Section Titles */
+.footer-title {
+    margin-bottom: 10px;
+}
+
+/* Footer Copyright */
+.footer-copyright {
+    font-size: 0.9rem;
+    color: #9CA3AF;
+}
+
+/* Footer Social Text */
+.footer-social-text {
+    color: #9CA3AF;
+}

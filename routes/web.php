@@ -41,3 +41,4 @@ Route::post('/registro', [AuthController::class, 'register'])->name('register.po
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/perfil', [AuthController::class, 'profile'])->name('profile')->middleware('auth');

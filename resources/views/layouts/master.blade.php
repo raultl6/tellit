@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TELLIT - @yield('titulo')</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
 </head>
 
 <body>
@@ -23,8 +24,8 @@
 
                 <!-- Login/Registro removed from here as requested -->
 
-                <div style="border-top:1px solid #eee; margin: 5px 0;"></div>
-                <a href="#" class="menu-item" style="font-size:0.8rem; color:#888;">⚙️ Admin</a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="menu-item admin-link">⚙️ Admin</a>
             </div>
             <div class="header-right">
                 <div class="search-container">
@@ -32,32 +33,29 @@
                     <a href="#" class="search-icon-small">🔍</a>
                 </div>
                 @auth
-                    <div class="user-header"
-                        style="position: relative; display: flex; align-items: center; gap: 10px; cursor: pointer;"
+                    <div class="user-header user-header-container"
                         onclick="document.getElementById('userDropdown').classList.toggle('show')">
                         <div class="user-info" style="text-align: right;">
                             <strong>{{ Auth::user()->name }}</strong>
                         </div>
-                        <div class="avatar" style="width: 35px; height: 35px; border-radius: 50%; overflow: hidden;">
+                        <div class="avatar user-avatar-container">
                             <img src="{{ Auth::user()->avatar ?? 'https://ui-avatars.com/api/?name=' . Auth::user()->name }}"
-                                alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+                                alt="Avatar" class="user-avatar-img">
                         </div>
 
                         <!-- User Dropdown -->
-                        <div id="userDropdown" class="dropdown-menu" style="top: 50px; right: 0; min-width: 150px;">
-                            <a href="#" class="menu-item">👤 Mi Perfil</a>
-                            <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
+                        <div id="userDropdown" class="dropdown-menu user-dropdown-menu">
+                            <a href="{{ route('profile') }}" class="menu-item">👤 Mi Perfil</a>
+                            <form action="{{ route('logout') }}" method="POST" class="logout-form">
                                 @csrf
-                                <button type="submit" class="menu-item"
-                                    style="width: 100%; text-align: left; background: none; border: none; font-family: inherit; font-size: inherit; cursor: pointer; color: #ef4444;">
+                                <button type="submit" class="menu-item logout-btn">
                                     🚪 Cerrar Sesión
                                 </button>
                             </form>
                         </div>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="btn btn-primary"
-                        style="padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 0.9rem;">
+                    <a href="{{ route('login') }}" class="btn btn-primary login-btn-header">
                         Iniciar Sesión
                     </a>
                 @endauth
@@ -72,18 +70,18 @@
     <footer>
         <div class="container footer-grid">
             <div>
-                <h3 style="margin-bottom: 10px;">TELLIT</h3>
-                <p style="font-size: 0.9rem; color: #9CA3AF;">© 2023. Todos los derechos reservados.</p>
+                <h3 class="footer-title">TELLIT</h3>
+                <p class="footer-copyright">© 2023. Todos los derechos reservados.</p>
             </div>
             <div>
-                <h4 style="margin-bottom: 10px;">Enlaces</h4>
+                <h4 class="footer-title">Enlaces</h4>
                 <a href="#" class="footer-link">Contacto</a>
                 <a href="#" class="footer-link">Sobre Nosotros</a>
                 <a href="#" class="footer-link">Admin</a>
             </div>
             <div>
-                <h4 style="margin-bottom: 10px;">Social</h4>
-                <p style="color: #9CA3AF;">Tw | Ig | Fb</p>
+                <h4 class="footer-title">Social</h4>
+                <p class="footer-social-text">Tw | Ig | Fb</p>
             </div>
         </div>
     </footer>

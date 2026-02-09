@@ -1,0 +1,172 @@
+/* --- Profile Page Styles --- */
+
+.profile-sidebar-layout {
+    display: flex;
+    gap: 40px;
+    padding-top: 40px;
+}
+
+.profile-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.profile-content-area {
+    flex-grow: 1;
+}
+
+.profile-sidebar-box {
+    background: white;
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 100px;
+    text-align: center;
+}
+
+.profile-avatar-large {
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+    margin: 0 auto 15px auto;
+}
+
+.profile-edit-link {
+    color: var(--primary);
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.profile-actions {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.profile-logout-btn {
+    color: var(--text-red);
+    border: 1px solid #fee2e2;
+    background: #fef2f2;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.profile-logout-btn:hover {
+    background-color: #fecaca;
+}
+
+/* Lists Section */
+.profile-section-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    align-items: center;
+}
+
+.profile-section-header h3 {
+    margin: 0;
+}
+
+.create-list-btn {
+    background: #374151;
+    color: white;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.list-card-terror {
+    background: #fef2f2;
+    border-color: #fee2e2;
+}
+
+.list-card-terror h4 {
+    color: #991b1b;
+}
+
+.list-card-terror p {
+    color: #b91c1c;
+    font-size: 0.9rem;
+}
+
+.list-card-favs {
+    background: #fffbeb;
+    border-color: #fef3c7;
+}
+
+.list-card-favs h4 {
+    color: #92400e;
+}
+
+.list-card-favs p {
+    color: #b45309;
+    font-size: 0.9rem;
+}
+
+/* Reviews History Section */
+.profile-history-title {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-review-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.profile-review-poster {
+    width: 60px;
+    height: 80px;
+    margin: 0;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    border-radius: 4px;
+}
+
+.profile-review-content {
+    flex: 1;
+}
+
+.profile-review-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-review-title {
+    margin: 0;
+}
+
+.profile-review-text {
+    margin-top: 5px;
+}
+
+.profile-review-date {
+    font-size: 0.9rem;
+    /* text-small equivalent */
+    color: #999;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .profile-sidebar-layout {
+        flex-direction: column;
+    }
+
+    .profile-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

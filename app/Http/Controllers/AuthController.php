@@ -39,4 +39,37 @@ class AuthController extends Controller
         // Lo mandamos a la portada
         return redirect()->route('home')->with('success', '¡Bienvenido a Tellit!');
     }
+
+    // 3. Mostrar formulario de Login
+    public function showLogin()
+    {
+        return view('auth.login');
+    }
+
+    // 4. Procesar Login
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('home'));
+        }
+
+        return back()->withErrors([
+            'email' => 'Las credenciales no coinciden con nuestros registros.',
+        ])->onlyInput('email');
+    }
+
+    // 5. Logout
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('home');
+    }
 }

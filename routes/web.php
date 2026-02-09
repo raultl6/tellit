@@ -18,7 +18,7 @@ use App\Http\Controllers\AuthController;
 */
 Route::get('/', function () {
     return view('seccion.inicio');
-});
+})->name('home');
 
 
 Route::get('/categorias', [CategoriaController::class, 'index'])->name('categorias.index');
@@ -36,3 +36,8 @@ Route::get('/ver/{slug}', [ContenidoController::class, 'show'])->name('contenido
 // Rutas de Registro
 Route::get('/registro', [AuthController::class, 'showRegister'])->name('register'); // Ver formulario
 Route::post('/registro', [AuthController::class, 'register'])->name('register.post'); // Enviar datos
+
+// Rutas de Login
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

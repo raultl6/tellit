@@ -7,6 +7,7 @@
     <title>TELLIT - @yield('titulo')</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pages.css') }}">
+    @stack('css')
 </head>
 
 <body>
@@ -25,7 +26,9 @@
                 <!-- Login/Registro removed from here as requested -->
 
                 <div class="dropdown-divider"></div>
-                <a href="#" class="menu-item admin-link">⚙️ Admin</a>
+                @if(Auth::check() && Auth::user()->role == 'admin')
+                    <a href="{{ route('admin.index') }}" class="menu-item admin-link">⚙️ Admin</a>
+                @endif
             </div>
             <div class="header-right">
                 <div class="search-container">

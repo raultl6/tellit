@@ -1,0 +1,78 @@
+/* Admin Panel Styles */
+
+.admin-nav-container {
+    background: #1f2937;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.admin-nav-btn {
+    background: none;
+    color: white;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.admin-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.admin-nav-btn.active {
+    background: #374151;
+    color: white;
+    border-color: #374151;
+}
+
+.admin-nav-btn.danger-active {
+    background: #dc2626;
+    color: white;
+    border: 1px solid #dc2626;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    text-align: left;
+    border-bottom: 2px solid #eee;
+    padding: 10px;
+}
+
+.admin-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.action-link-edit {
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+.action-link-delete {
+    color: var(--text-red);
+}
+
+.text-green {
+    color: green;
+}
+
+.text-red {
+    color: red;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+.btn-neutral {
+    background: #eee;
+    color: #333;
+}

@@ -3,6 +3,10 @@
 @section('titulo', 'Admin Títulos')
 
 @section('contenido')
+    @push('css')
+        <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    @endpush
+
     <div style="padding-top: 2rem;">
         <h2 class="text-center mb-4">Panel de Administración</h2>
 
@@ -25,56 +29,56 @@
                 <button class="btn btn-mint" style="padding: 8px 15px; font-size: 0.9rem;">+ Nuevo Título</button>
             </div>
 
-            <table class="admin-table" style="width: 100%; border-collapse: collapse;">
+            <table class="admin-table">
                 <thead>
-                    <tr style="text-align: left; border-bottom: 2px solid #eee;">
-                        <th style="padding: 10px;">ID</th>
-                        <th style="padding: 10px;">Título</th>
-                        <th style="padding: 10px;">Año</th>
-                        <th style="padding: 10px;">Tipo</th>
-                        <th style="padding: 10px;">Acciones</th>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Año</th>
+                        <th>Tipo</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Dummy Data for now -->
-                    <tr style="border-bottom: 1px solid #eee;">
-                        <td style="padding: 10px;">001</td>
-                        <td style="padding: 10px;">The Matrix</td>
-                        <td style="padding: 10px;">1999</td>
-                        <td style="padding: 10px;">Película</td>
-                        <td style="padding: 10px;">
-                            <a href="#" style="color:var(--primary); margin-right:10px;">[Editar]</a>
-                            <a href="#" style="color:var(--text-red);">[Borrar]</a>
+                    <tr>
+                        <td>001</td>
+                        <td>The Matrix</td>
+                        <td>1999</td>
+                        <td>Película</td>
+                        <td>
+                            <a href="#" class="action-link-edit">[Editar]</a>
+                            <a href="#" class="action-link-delete">[Borrar]</a>
                         </td>
                     </tr>
-                    <tr style="border-bottom: 1px solid #eee;">
-                        <td style="padding: 10px;">002</td>
-                        <td style="padding: 10px;">Inception</td>
-                        <td style="padding: 10px;">2010</td>
-                        <td style="padding: 10px;">Película</td>
-                        <td style="padding: 10px;">
-                            <a href="#" style="color:var(--primary); margin-right:10px;">[Editar]</a>
-                            <a href="#" style="color:var(--text-red);">[Borrar]</a>
+                    <tr>
+                        <td>002</td>
+                        <td>Inception</td>
+                        <td>2010</td>
+                        <td>Película</td>
+                        <td>
+                            <a href="#" class="action-link-edit">[Editar]</a>
+                            <a href="#" class="action-link-delete">[Borrar]</a>
                         </td>
                     </tr>
-                    <tr style="border-bottom: 1px solid #eee;">
-                        <td style="padding: 10px;">003</td>
-                        <td style="padding: 10px;">Breaking Bad</td>
-                        <td style="padding: 10px;">2008</td>
-                        <td style="padding: 10px;">Serie</td>
-                        <td style="padding: 10px;">
-                            <a href="#" style="color:var(--primary); margin-right:10px;">[Editar]</a>
-                            <a href="#" style="color:var(--text-red);">[Borrar]</a>
+                    <tr>
+                        <td>003</td>
+                        <td>Breaking Bad</td>
+                        <td>2008</td>
+                        <td>Serie</td>
+                        <td>
+                            <a href="#" class="action-link-edit">[Editar]</a>
+                            <a href="#" class="action-link-delete">[Borrar]</a>
                         </td>
                     </tr>
-                    <tr style="border-bottom: 1px solid #eee;">
-                        <td style="padding: 10px;">004</td>
-                        <td style="padding: 10px;">Stranger Things</td>
-                        <td style="padding: 10px;">2016</td>
-                        <td style="padding: 10px;">Serie</td>
-                        <td style="padding: 10px;">
-                            <a href="#" style="color:var(--primary); margin-right:10px;">[Editar]</a>
-                            <a href="#" style="color:var(--text-red);">[Borrar]</a>
+                    <tr>
+                        <td>004</td>
+                        <td>Stranger Things</td>
+                        <td>2016</td>
+                        <td>Serie</td>
+                        <td>
+                            <a href="#" class="action-link-edit">[Editar]</a>
+                            <a href="#" class="action-link-delete">[Borrar]</a>
                         </td>
                     </tr>
                 </tbody>

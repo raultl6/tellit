@@ -44,7 +44,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/perfil', [AuthController::class, 'profile'])->name('profile')->middleware('auth');
 
 // Rutas de Admin
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::get('/usuarios', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
     Route::get('/resenas', [App\Http\Controllers\AdminController::class, 'reviews'])->name('admin.reviews');

@@ -62,17 +62,59 @@
 
                 <div class="card review-form-card">
                     <h4 class="review-form-title">Deja tu opinión</h4>
-                    <div class="review-stars">
-                        <span class="star-active">★</span>
-                        <span class="star-active">★</span>
-                        <span class="star-active">★</span>
-                        <span class="star-inactive">★</span>
-                        <span class="star-inactive">★</span>
-                    </div>
-                    <textarea class="form-textarea" placeholder="¿Qué te pareció la película? Escribe aquí..."></textarea>
-                    <div class="review-submit-container">
-                        <button class="btn btn-primary">Publicar Reseña</button>
-                    </div>
+
+                    @auth
+                        @if(session('success'))
+                            <div class="alert alert-success mb-3 p-2 bg-green-100 text-green-800 rounded">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        <form action="{{ route('resenas.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="contenido_id" value="{{ $contenido->id }}">
+
+                            <div class="mb-3">
+                                <label for="puntuacion" class="form-label font-weight-bold">Puntuación:</label>
+                                <select name="puntuacion" id="puntuacion"
+                                    class="form-select w-auto d-inline-block @error('puntuacion') is-invalid @enderror"
+                                    required>
+                                    <option value="" disabled selected>Selecciona...</option>
+                                    <option value="5" {{ old('puntuacion') == '5' ? 'selected' : '' }}>5 Estrellas - Excelente
+                                    </option>
+                                    <option value="4" {{ old('puntuacion') == '4' ? 'selected' : '' }}>4 Estrellas - Muy Buena
+                                    </option>
+                                    <option value="3" {{ old('puntuacion') == '3' ? 'selected' : '' }}>3 Estrellas - Buena
+                                    </option>
+                                    <option value="2" {{ old('puntuacion') == '2' ? 'selected' : '' }}>2 Estrellas - Regular
+                                    </option>
+                                    <option value="1" {{ old('puntuacion') == '1' ? 'selected' : '' }}>1 Estrella - Mala</option>
+                                </select>
+                                @error('puntuacion')
+                                    <br><small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="comentario" class="form-label font-weight-bold">Tu Reseña:</label>
+                                <textarea name="comentario" id="comentario"
+                                    class="form-textarea w-100 @error('comentario') is-invalid @enderror" rows="4"
+                                    placeholder="¿Qué te pareció? Escribe aquí..." required>{{ old('comentario') }}</textarea>
+                                @error('comentario')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="review-submit-container mt-2">
+                                <button type="submit" class="btn btn-primary">Publicar Reseña</button>
+                            </div>
+                        </form>
+                    @else
+                        <div class="alert alert-warning p-3">
+                            Debes <a href="{{ route('login') }}" class="font-weight-bold">iniciar sesión</a> para dejar una
+                            reseña.
+                        </div>
+                    @endauth
                 </div>
             </div>
         </div>

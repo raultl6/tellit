@@ -43,6 +43,22 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/perfil', [AuthController::class, 'profile'])->name('profile')->middleware('auth');
 
+// Rutas de Reseñas
+Route::resource('resenas', App\Http\Controllers\ResenaController::class)->only([
+    'create',
+    'store',
+    'edit',
+    'update',
+    'destroy'
+])->middleware('auth');
+Route::resource('resenas', App\Http\Controllers\ResenaController::class)->except([
+    'create',
+    'store',
+    'edit',
+    'update',
+    'destroy'
+]);
+
 // Rutas de Admin
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');

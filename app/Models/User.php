@@ -42,5 +42,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Relación: Un Usuario tiene (escribe) muchas Reseñas.
+     */
+    public function resenas()
+    {
+        return $this->hasMany(Resena::class);
+    }
 }
 

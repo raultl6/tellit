@@ -79,8 +79,7 @@
             <div>
                 <h4 class="footer-title">Enlaces</h4>
                 <a href="#" class="footer-link">Contacto</a>
-                <a href="#" class="footer-link">Sobre Nosotros</a>
-                <a href="#" class="footer-link">Admin</a>
+                <a href="#" class="footer-link">Sobre Nosotros</a>                
             </div>
             <div>
                 <h4 class="footer-title">Social</h4>

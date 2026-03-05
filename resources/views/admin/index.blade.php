@@ -39,8 +39,7 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Dummy Data for now -->
+                <tbody>                    
                     <tr>
                         <td>001</td>
                         <td>The Matrix</td>

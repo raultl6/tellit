@@ -12,24 +12,24 @@
 
         <div
             style="background: #1f2937; padding: 15px; border-radius: 6px; margin-bottom: 20px; display: flex; gap: 10px; overflow-x: auto;">
-            <a href="{{ route('admin.index') }}" class="btn"
+            <a href="{{ route('admin.index') }}" class="boton"
                 style="background: #374151; color: white; border: 1px solid transparent;">Títulos</a>
 
-            <a href="{{ route('admin.users') }}" class="btn"
+            <a href="{{ route('admin.users') }}" class="boton"
                 style="background: none; color: white; border: 1px solid transparent;">Usuarios</a>
-            <a href="{{ route('admin.reviews') }}" class="btn"
+            <a href="{{ route('admin.reviews') }}" class="boton"
                 style="background: none; color: white; border: 1px solid transparent;">Reseñas</a>
-            <a href="{{ route('admin.reports') }}" class="btn"
+            <a href="{{ route('admin.reports') }}" class="boton"
                 style="background: none; color: white; border: 1px solid transparent;">Reportes ⚠️</a>
         </div>
 
-        <div class="card">
+        <div class="tarjeta">
             <div class="flex justify-between mb-4">
                 <h3 style="margin:0;">Gestión de Contenido</h3>
-                <button class="btn btn-mint" style="padding: 8px 15px; font-size: 0.9rem;">+ Nuevo Título</button>
+                <button class="boton btn-mint" style="padding: 8px 15px; font-size: 0.9rem;">+ Nuevo Título</button>
             </div>
 
-            <table class="admin-table">
+            <table class="tabla-admin">
                 <thead>
                     <tr>
                         <th>ID</th>

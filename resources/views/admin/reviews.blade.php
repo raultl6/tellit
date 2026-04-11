@@ -10,16 +10,16 @@
     <div style="padding-top: 2rem;">
         <h2 class="text-center mb-4">Panel de Administración</h2>
 
-        <div class="admin-nav-container">
-            <a href="{{ route('admin.index') }}" class="btn admin-nav-btn">Títulos</a>
-            <a href="{{ route('admin.users') }}" class="btn admin-nav-btn">Usuarios</a>
-            <a href="{{ route('admin.reviews') }}" class="btn admin-nav-btn active">Reseñas</a>
-            <a href="{{ route('admin.reports') }}" class="btn admin-nav-btn">Reportes ⚠️</a>
+        <div class="caja-nav-admin">
+            <a href="{{ route('admin.index') }}" class="boton boton-nav-admin">Títulos</a>
+            <a href="{{ route('admin.users') }}" class="boton boton-nav-admin">Usuarios</a>
+            <a href="{{ route('admin.reviews') }}" class="boton boton-nav-admin active">Reseñas</a>
+            <a href="{{ route('admin.reports') }}" class="boton boton-nav-admin">Reportes ⚠️</a>
         </div>
 
-        <div class="card">
+        <div class="tarjeta">
             <h3 class="mb-4">Últimas Reseñas Publicadas</h3>
-            <table class="admin-table">
+            <table class="tabla-admin">
                 <thead>
                     <tr>
                         <th>Fecha</th>

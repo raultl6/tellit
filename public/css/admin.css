@@ -1,6 +1,6 @@
 /* Admin Panel Styles */
 
-.admin-nav-container {
+.caja-nav-admin {
     background: #1f2937;
     padding: 15px;
     border-radius: 6px;
@@ -10,42 +10,42 @@
     overflow-x: auto;
 }
 
-.admin-nav-btn {
+.boton-nav-admin {
     background: none;
     color: white;
     border: 1px solid transparent;
     transition: all 0.2s;
 }
 
-.admin-nav-btn:hover {
+.boton-nav-admin:hover {
     background: rgba(255, 255, 255, 0.1);
     color: white;
 }
 
-.admin-nav-btn.active {
+.boton-nav-admin.active {
     background: #374151;
     color: white;
     border-color: #374151;
 }
 
-.admin-nav-btn.danger-active {
+.boton-nav-admin.danger-active {
     background: #dc2626;
     color: white;
     border: 1px solid #dc2626;
 }
 
-.admin-table {
+.tabla-admin {
     width: 100%;
     border-collapse: collapse;
 }
 
-.admin-table th {
+.tabla-admin th {
     text-align: left;
     border-bottom: 2px solid #eee;
     padding: 10px;
 }
 
-.admin-table td {
+.tabla-admin td {
     padding: 10px;
     border-bottom: 1px solid #eee;
 }

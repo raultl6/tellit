@@ -5,8 +5,8 @@
 @section('contenido')
     <div class="sidebar-layout">
 
-        <aside class="sidebar">
-            <div class="sidebar-box">
+        <aside class="barra-lateral">
+            <div class="caja-lateral">
                 <h3 class="filter-title">Filtros</h3>
 
                 <div class="filter-group">
@@ -24,18 +24,18 @@
                     </select>
                 </div>
 
-                <button class="btn btn-primary btn-block">Aplicar</button>
+                <button class="boton boton-primario btn-block">Aplicar</button>
             </div>
         </aside>
 
         <div class="content-area">
             <h3 class="section-title">Explorar</h3>
 
-            <div class="grid grid-4">
+            <div class="cuadricula cuadricula-4">
                 @foreach($contenidos as $contenido)
-                    <a href="{{ route('contenidos.show', $contenido->slug) }}" class="card">
+                    <a href="{{ route('contenidos.show', $contenido->slug) }}" class="tarjeta">
 
-                        <div class="placeholder-img content-card-img"
+                        <div class="imagen-relleno imagen-tarjeta-contenido"
                             style="background-image: url('{{ $contenido->imagen_url }}');">
                             @if(!$contenido->imagen_url) IMG @endif
                         </div>

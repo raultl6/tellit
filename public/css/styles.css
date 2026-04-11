@@ -42,7 +42,7 @@ body {
 }
 
 /* --- LAYOUT GENERAL --- */
-.container {
+.contenedor {
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 24px;
@@ -107,7 +107,7 @@ header {
 }
 
 /* Dropdown Menu */
-.dropdown-menu {
+.menu-desplegable {
     position: absolute;
     top: 80px;
     left: 0;
@@ -121,7 +121,7 @@ header {
     z-index: 200;
 }
 
-.dropdown-menu.show {
+.menu-desplegable.show {
     display: block;
 }
 
@@ -179,7 +179,7 @@ header {
     color: #999;
 }
 
-.user-header {
+.cabecera-usuario {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -193,7 +193,7 @@ header {
     font-size: 1rem;
 }
 
-.avatar {
+.foto-perfil {
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -207,7 +207,7 @@ header {
 }
 
 /* --- COMPONENTES --- */
-.btn {
+.boton {
     padding: 12px 24px;
     border-radius: 8px;
     border: none;
@@ -220,7 +220,7 @@ header {
     text-decoration: none;
 }
 
-.btn-primary {
+.boton-primario {
     background-color: var(--primary);
     color: white;
 }
@@ -230,13 +230,13 @@ header {
     color: #064e3b;
 }
 
-.btn-outline {
+.boton-contorno {
     background: white;
     border: 1px solid #ccc;
     color: var(--text-dark);
 }
 
-.btn:hover {
+.boton:hover {
     opacity: 0.9;
 }
 
@@ -245,7 +245,7 @@ header {
     display: block;
 }
 
-.card {
+.tarjeta {
     background: var(--white);
     border-radius: var(--radius);
     padding: 24px;
@@ -257,65 +257,65 @@ header {
     color: inherit;
 }
 
-.card:hover {
+.tarjeta:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow);
     border-color: var(--secondary);
 }
 
 /* --- GRIDS --- */
-.grid {
+.cuadricula {
     display: grid;
     gap: 30px;
 }
 
-.grid-2 {
+.cuadricula-2 {
     grid-template-columns: repeat(2, 1fr);
 }
 
-.grid-3 {
+.cuadricula-3 {
     grid-template-columns: repeat(3, 1fr);
 }
 
-.grid-4 {
+.cuadricula-4 {
     grid-template-columns: repeat(4, 1fr);
 }
 
-.grid-5 {
+.cuadricula-5 {
     grid-template-columns: repeat(5, 1fr);
 }
 
 @media (max-width: 1024px) {
 
-    .grid-4,
-    .grid-5 {
+    .cuadricula-4,
+    .cuadricula-5 {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (max-width: 900px) {
-    .grid-3 {
+    .cuadricula-3 {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 600px) {
 
-    .grid-2,
-    .grid-3,
-    .grid-4,
-    .grid-5 {
+    .cuadricula-2,
+    .cuadricula-3,
+    .cuadricula-4,
+    .cuadricula-5 {
         grid-template-columns: 1fr;
     }
 
     .sidebar-layout,
-    .details-container {
+    .contenedor-detalles {
         flex-direction: column;
     }
 
-    .details-left,
-    .details-right,
-    .sidebar {
+    .detalles-izq,
+    .detalles-der,
+    .barra-lateral {
         width: 100%;
         border-right: none;
     }
@@ -371,7 +371,7 @@ header {
     margin-top: 12px;
 }
 
-.placeholder-img {
+.imagen-relleno {
     background-color: #eee;
     height: 200px;
     border-radius: 8px;
@@ -394,7 +394,7 @@ header {
 }
 
 /* --- PÁGINAS ESPECÍFICAS --- */
-.hero {
+.portada-destacada {
     text-align: center;
     background: white;
     padding: 60px 40px;
@@ -404,12 +404,12 @@ header {
     box-shadow: var(--shadow);
 }
 
-.hero h2 {
+.portada-destacada h2 {
     font-size: 2.5rem;
     margin-bottom: 10px;
 }
 
-.random-box {
+.caja-aleatoria {
     background: white;
     height: 100%;
     display: flex;
@@ -427,7 +427,7 @@ header {
     gap: 40px;
 }
 
-.sidebar {
+.barra-lateral {
     width: 280px;
     flex-shrink: 0;
 }
@@ -436,7 +436,7 @@ header {
     flex-grow: 1;
 }
 
-.sidebar-box {
+.caja-lateral {
     background: white;
     padding: 30px;
     border-radius: var(--radius);
@@ -445,7 +445,7 @@ header {
     top: 100px;
 }
 
-.details-container {
+.contenedor-detalles {
     background: white;
     border-radius: var(--radius);
     overflow: hidden;
@@ -454,7 +454,7 @@ header {
     box-shadow: var(--shadow);
 }
 
-.details-left {
+.detalles-izq {
     width: 350px;
     flex-shrink: 0;
     background: #f9fafb;
@@ -463,7 +463,7 @@ header {
     border-right: 1px solid #e5e7eb;
 }
 
-.details-right {
+.detalles-der {
     flex-grow: 1;
     padding: 40px;
 }
@@ -501,19 +501,19 @@ header {
     resize: vertical;
 }
 
-.admin-table {
+.tabla-admin {
     width: 100%;
     border-collapse: collapse;
 }
 
-.admin-table th,
-.admin-table td {
+.tabla-admin th,
+.tabla-admin td {
     padding: 20px;
     text-align: left;
     border-bottom: 1px solid #eee;
 }
 
-.admin-table th {
+.tabla-admin th {
     background: #f9fafb;
 }
 
@@ -650,7 +650,7 @@ footer {
 }
 
 /* Botones genéricos */
-.btn {
+.boton {
     text-decoration: none;
     font-weight: 600;
     padding: 8px 20px;

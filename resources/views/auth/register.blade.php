@@ -15,8 +15,8 @@
         ←
     </a>
 
-    <main class="container auth-container">
-        <div class="card auth-card">
+    <main class="contenedor contenedor-acceso">
+        <div class="tarjeta tarjeta-acceso">
 
             <div class="auth-header">
                 <img src="{{ asset('img/logo.png') }}" alt="Logo" class="auth-logo">
@@ -61,7 +61,7 @@
                     </div>
                 @endif
 
-                <button type="submit" class="btn btn-primary btn-block auth-btn register-btn">Crear
+                <button type="submit" class="boton boton-primario btn-block auth-btn register-btn">Crear
                     Cuenta</button>
             </form>
 

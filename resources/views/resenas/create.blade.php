@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
 @section('contenido')
-    <div class="container my-5">
+    <div class="contenedor my-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card shadow-sm">
+                <div class="tarjeta shadow-sm">
                     <div class="card-header bg-primary text-white">
                         <h4 class="mb-0">Escribir una Reseña</h4>
                     </div>
@@ -70,7 +70,7 @@
 
                             {{-- Botón de Enviar --}}
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary btn-lg">Publicar Reseña</button>
+                                <button type="submit" class="boton boton-primario btn-lg">Publicar Reseña</button>
                             </div>
                         </form>
                     </div>

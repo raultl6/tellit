@@ -12,7 +12,7 @@
 }
 
 /* Main Auth Container */
-.auth-container {
+.contenedor-acceso {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,7 +20,7 @@
 }
 
 /* Auth Card */
-.auth-card {
+.tarjeta-acceso {
     width: 100%;
     max-width: 400px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);

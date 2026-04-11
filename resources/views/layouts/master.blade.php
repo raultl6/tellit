@@ -12,13 +12,13 @@
 
 <body>
     <header>
-        <div class="container header-content">
+        <div class="contenedor header-content">
             <div class="header-left">
                 <a href="{{ url('/') }}"><img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo-img"></a>
                 <button onclick="toggleMenu()" class="menu-btn">☰</button>
                 <a href="{{ url('/') }}" class="site-title">TELLIT</a>
             </div>
-            <div id="dropdownMenu" class="dropdown-menu">
+            <div id="menuDesplegableGlobal" class="menu-desplegable">
                 <a href="{{ url('/') }}" class="menu-item">🏠 Inicio</a>
                 <a href="{{ route('contenidos.index') }}" class="menu-item">🔍 Explorar</a>
                 <a href="#" class="menu-item">📑 Mis Listas</a>
@@ -36,18 +36,18 @@
                     <a href="#" class="search-icon-small">🔍</a>
                 </div>
                 @auth
-                    <div class="user-header user-header-container"
-                        onclick="document.getElementById('userDropdown').classList.toggle('show')">
+                    <div class="cabecera-usuario user-header-container"
+                        onclick="document.getElementById('menuUsuario').classList.toggle('show')">
                         <div class="user-info" style="text-align: right;">
                             <strong>{{ Auth::user()->name }}</strong>
                         </div>
-                        <div class="avatar user-avatar-container">
+                        <div class="foto-perfil user-avatar-container">
                             <img src="{{ Auth::user()->avatar ?? 'https://ui-avatars.com/api/?name=' . Auth::user()->name }}"
                                 alt="Avatar" class="user-avatar-img">
                         </div>
 
                         <!-- User Dropdown -->
-                        <div id="userDropdown" class="dropdown-menu user-dropdown-menu">
+                        <div id="menuUsuario" class="menu-desplegable user-dropdown-menu">
                             <a href="{{ route('profile') }}" class="menu-item">👤 Mi Perfil</a>
                             <form action="{{ route('logout') }}" method="POST" class="logout-form">
                                 @csrf
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="btn btn-primary login-btn-header">
+                    <a href="{{ route('login') }}" class="boton boton-primario login-btn-header">
                         Iniciar Sesión
                     </a>
                 @endauth
@@ -66,12 +66,12 @@
         </div>
     </header>
 
-    <main class="container">
+    <main class="contenedor">
         @yield('contenido')
     </main>
 
     <footer>
-        <div class="container footer-grid">
+        <div class="contenedor footer-grid">
             <div>
                 <h3 class="footer-title">TELLIT</h3>
                 <p class="footer-copyright">© 2023. Todos los derechos reservados.</p>
@@ -89,15 +89,15 @@
     </footer>
 
     <script>
-        function toggleMenu() { document.getElementById('dropdownMenu').classList.toggle('show'); }
+        function toggleMenu() { document.getElementById('menuDesplegableGlobal').classList.toggle('show'); }
         document.addEventListener('click', function (e) {
             // Close main menu
-            if (!document.getElementById('dropdownMenu').contains(e.target) && !document.querySelector('.menu-btn').contains(e.target)) {
-                document.getElementById('dropdownMenu').classList.remove('show');
+            if (!document.getElementById('menuDesplegableGlobal').contains(e.target) && !document.querySelector('.menu-btn').contains(e.target)) {
+                document.getElementById('menuDesplegableGlobal').classList.remove('show');
             }
             // Close user dropdown
-            const userDropdown = document.getElementById('userDropdown');
-            const userHeader = document.querySelector('.user-header');
+            const userDropdown = document.getElementById('menuUsuario');
+            const userHeader = document.querySelector('.cabecera-usuario');
             if (userDropdown && userHeader && !userDropdown.contains(e.target) && !userHeader.contains(e.target)) {
                 userDropdown.classList.remove('show');
             }

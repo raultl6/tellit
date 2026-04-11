@@ -3,20 +3,20 @@
 @section('titulo', $contenido->titulo)
 
 @section('contenido')
-    <div class="details-container">
-        <div class="details-left">
+    <div class="contenedor-detalles">
+        <div class="detalles-izq">
             <div class="details-poster" style="background-image: url('{{ $contenido->imagen_url }}');">
                 @if(!$contenido->imagen_url)
                     <span class="details-poster-placeholder">Sin Imagen</span>
                 @endif
             </div>
 
-            <button class="btn btn-primary btn-block details-btn">
+            <button class="boton boton-primario btn-block details-btn">
                 {{ $contenido->tipo == 'serie' ? 'Ver Capítulos' : 'Ver Película' }}
             </button>
         </div>
 
-        <div class="details-right">
+        <div class="detalles-der">
             <h1 class="details-title">{{ $contenido->titulo }}</h1>
 
             <div class="meta-tags">
@@ -60,7 +60,7 @@
                     @endforelse
                 </div>
 
-                <div class="card review-form-card">
+                <div class="tarjeta review-form-card">
                     <h4 class="review-form-title">Deja tu opinión</h4>
 
                     @auth
@@ -106,7 +106,7 @@
                             </div>
 
                             <div class="review-submit-container mt-2">
-                                <button type="submit" class="btn btn-primary">Publicar Reseña</button>
+                                <button type="submit" class="boton boton-primario">Publicar Reseña</button>
                             </div>
                         </form>
                     @else

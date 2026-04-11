@@ -20,12 +20,7 @@ Route::get('/', function () {
     return view('seccion.inicio');
 })->name('home');
 
-
-Route::get('/categorias', [CategoriaController::class, 'index'])->name('categorias.index');
-
-
 Route::get('/explorar', [ContenidoController::class, 'index'])->name('contenidos.index');
-
 
 
 // La parte {slug} es el comodín, como el nombre facil (ej: inception, breaking-bad)
@@ -66,3 +61,4 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/resenas', [App\Http\Controllers\AdminController::class, 'reviews'])->name('admin.reviews');
     Route::get('/reportes', [App\Http\Controllers\AdminController::class, 'reports'])->name('admin.reports');
 });
+

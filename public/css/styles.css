@@ -1,23 +1,12 @@
-/* --- styles.css --- */
 :root {
     --primary: #2563EB;
-    /* Azul Principal */
-    --secondary: #60A5FA;
-    /* Celeste Claro */
-    --bg-gray: #F3F4F6;
-    /* Gris Suave */
-    --mint: #34D399;
-    /* Verde Menta */
-
-    --text-dark: #111827;
-    /* Texto oscuro */
-    --text-gray: #4B5563;
-    /* Texto Gris */
-    --text-red: #DC2626;
-    /* Rojo */
-    --text-yellow: #F59E0B;
-    /* Amarillo */
-
+    --secondary: #60A5FA;    
+    --bg-gray: #F3F4F6;    
+    --mint: #34D399;    
+    --text-dark: #111827;    
+    --text-gray: #4B5563;    
+    --text-red: #DC2626;    
+    --text-yellow: #F59E0B;    
     --white: #FFFFFF;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --radius: 12px;
@@ -41,7 +30,7 @@ body {
     line-height: 1.5;
 }
 
-/* --- LAYOUT GENERAL --- */
+/* --- Estructura General --- */
 .contenedor {
     max-width: 1440px;
     margin: 0 auto;
@@ -54,7 +43,7 @@ main {
     padding: 40px 0;
 }
 
-/* --- HEADER --- */
+/* --- Header --- */
 header {
     background-color: var(--white);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -106,7 +95,7 @@ header {
     line-height: 1;
 }
 
-/* Dropdown Menu */
+/* Menú desplegable */
 .menu-desplegable {
     position: absolute;
     top: 80px;
@@ -145,7 +134,7 @@ header {
     color: var(--primary);
 }
 
-/* Buscador Header */
+/* Buscador del header */
 .search-container {
     position: relative;
     margin-right: 30px;
@@ -206,7 +195,7 @@ header {
     font-size: 1.5rem;
 }
 
-/* --- COMPONENTES --- */
+/* --- Botones, tarjetas... etc) --- */
 .boton {
     padding: 12px 24px;
     border-radius: 8px;
@@ -263,7 +252,7 @@ header {
     border-color: var(--secondary);
 }
 
-/* --- GRIDS --- */
+/* --- Grids --- */
 .cuadricula {
     display: grid;
     gap: 30px;
@@ -321,7 +310,7 @@ header {
     }
 }
 
-/* --- UTILS --- */
+/* --- Utils --- */
 .flex {
     display: flex;
     align-items: center;
@@ -393,7 +382,7 @@ header {
     color: #111827;
 }
 
-/* --- PÁGINAS ESPECÍFICAS --- */
+/* --- Estilos para páginas específicas --- */
 .portada-destacada {
     text-align: center;
     background: white;
@@ -542,7 +531,7 @@ footer {
     color: white;
 }
 
-/* --- ESTILOS PARA LIKES Y DISLIKES --- */
+/* --- Estilos para likes y dislikes --- */
 .review-actions {
     display: flex;
     gap: 10px;
@@ -578,13 +567,12 @@ footer {
     background-color: #eff6ff;
 }
 
-/* --- ESTILOS NUEVOS PARA COMENTARIOS --- */
+/* --- Estilos para la sección de comentarios --- */
 .comments-section {
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid #e5e7eb;
     display: block;
-    /* Siempre visible */
 }
 
 .comment-item {
@@ -593,7 +581,6 @@ footer {
     margin-bottom: 15px;
     padding-left: 15px;
     border-left: 3px solid #e5e7eb;
-    /* Línea gris a la izquierda */
 }
 
 .reply-box {
@@ -615,41 +602,39 @@ footer {
     outline: none;
 }
 
-/* Navbar principal */
+/* Barra de navegación principal */
 .tellit-nav {
     display: flex;
     justify-content: space-between;
-    /* Clave: Separa Logo (izq) de Usuario (der) */
+    /* Truquito flex: separa el logo (izq) y la zona de usuario (der) */
     align-items: center;
     padding: 0 2rem;
     height: 70px;
     background-color: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    /* Sombra suave debajo */
+    /* Sombreado suave debajo del header */
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-/* Logo de la marca */
+/* Logo principal de la marca */
 .tellit-brand {
     font-size: 1.5rem;
     font-weight: 800;
     color: #4a90e2;
-    /* Azul Tellit */
     text-decoration: none;
     letter-spacing: -0.5px;
 }
 
-/* Contenedor de la derecha (Login/User) */
+/* Contenedor lateral derecho (Login/Usuario) */
 .tellit-auth {
     display: flex;
     align-items: center;
     gap: 15px;
-    /* Espacio entre botones */
 }
 
-/* Botones genéricos */
+/* Estilos base para los botones */
 .boton {
     text-decoration: none;
     font-weight: 600;
@@ -659,7 +644,7 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Estado: NO LOGUEADO */
+/* Interfaz para usuarios sin loguear */
 .btn-login {
     color: #555;
 }
@@ -677,7 +662,7 @@ footer {
     background-color: #357abd;
 }
 
-/* Estado: LOGUEADO */
+/* Interfaz para usuarios logueados */
 .user-profile-link {
     display: flex;
     align-items: center;
@@ -701,21 +686,21 @@ footer {
     border: 1px solid #ddd;
 }
 
-/* --- Structural Styles (from master.blade.php) --- */
+/* --- Estilos estructurales (se han pasado desde master.blade.php) --- */
 
-/* Dropdown Divider */
+/* Línea del menú desplegable */
 .dropdown-divider {
     border-top: 1px solid #eee;
     margin: 5px 0;
 }
 
-/* Admin Link in Dropdown */
+/* Enlace para ir al panel de administrador */
 .admin-link {
     font-size: 0.8rem;
     color: #888;
 }
 
-/* User Header Area */
+/* Zona de perfil del usuario en el header */
 .user-header-container {
     position: relative;
     display: flex;
@@ -737,7 +722,7 @@ footer {
     object-fit: cover;
 }
 
-/* User Dropdown */
+/* Menú desplegable del usuario */
 .user-dropdown-menu {
     top: 50px;
     right: 0;
@@ -759,7 +744,7 @@ footer {
     color: #ef4444;
 }
 
-/* Login Button in Header */
+/* Botón de inicio de sesión en el header */
 .login-btn-header {
     padding: 8px 15px;
     border-radius: 5px;
@@ -768,18 +753,18 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Footer Section Titles */
+/* Títulos de sección para el Footer */
 .footer-title {
     margin-bottom: 10px;
 }
 
-/* Footer Copyright */
+/* Textos legales y de copyright */
 .footer-copyright {
     font-size: 0.9rem;
     color: #9CA3AF;
 }
 
-/* Footer Social Text */
+/* Estilos para textos de redes sociales */
 .footer-social-text {
     color: #9CA3AF;
 }

@@ -42,8 +42,8 @@
         </div>
         <div class="caja-aleatoria">
             <div class="random-icon">🎲</div>
-            <h3>¿Indeciso?</h3>
-            <p class="text-gray text-small mb-4">Deja que el azar elija por ti.</p>
+            <h3>¿No sabes qué ver?</h3>
+            <p class="text-gray text-small mb-4">Serie o Película, aquí lo encontrarás.</p>
             <a href="#" class="boton boton-primario btn-block">Pincha Aquí</a>
         </div>
     </div>

@@ -1,6 +1,6 @@
-/* --- Auth Pages (Login & Register) --- */
+/* --- Vistas de Login y Registro --- */
 
-/* Back Button */
+/* Boton para volver atrás */
 .auth-back-btn {
     position: absolute;
     top: 30px;
@@ -11,7 +11,7 @@
     cursor: pointer;
 }
 
-/* Main Auth Container */
+/* Contenedor principal auth */
 .contenedor-acceso {
     display: flex;
     align-items: center;
@@ -19,7 +19,7 @@
     min-height: 100vh;
 }
 
-/* Auth Card */
+/* Tarjeta de acceso */
 .tarjeta-acceso {
     width: 100%;
     max-width: 400px;
@@ -29,7 +29,7 @@
     background-color: white;
 }
 
-/* Auth Header */
+/* Cabecera del formulario */
 .auth-header {
     text-align: center;
     margin-bottom: 30px;
@@ -51,7 +51,7 @@
     margin-top: 5px;
 }
 
-/* Form Groups */
+/* Grupos de campos del formulario */
 .auth-form-group {
     margin-bottom: 15px;
 }
@@ -70,7 +70,7 @@
     border-radius: 5px;
 }
 
-/* Error Messages */
+/* Mensajes de error de validación */
 .auth-errors {
     color: red;
     font-size: 0.9rem;
@@ -91,7 +91,7 @@
     margin-bottom: 15px;
 }
 
-/* Submit Button */
+/* Botón de envío (Submit) */
 .auth-btn {
     width: 100%;
     padding: 12px;
@@ -108,7 +108,7 @@
     margin-top: 20px;
 }
 
-/* Footer Links */
+/* Enlaces del footer */
 .auth-footer {
     border-top: 1px solid #eee;
     margin: 30px 0 10px 0;

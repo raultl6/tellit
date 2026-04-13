@@ -1,6 +1,6 @@
-/* --- Pages CSS (Show, Index, Home) --- */
+/* --- Estilos sueltos para las vistas (Show, Index, Inicio) --- */
 
-/* --- Details Page (show.blade.php) --- */
+/* --- Vista de detalles de la obra (show.blade.php) --- */
 .details-poster {
     background-size: cover;
     height: 400px;
@@ -118,7 +118,7 @@
     margin-top: 10px;
 }
 
-/* --- Index Page (index.blade.php) --- */
+/* --- Vista del catálogo general (index.blade.php) --- */
 .filter-title {
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
@@ -152,7 +152,7 @@
     color: #fbbf24;
 }
 
-/* --- Home Page (inicio.blade.php) --- */
+/* --- Vista de la portada de inicio (inicio.blade.php) --- */
 .avatar-mini {
     width: 30px;
     height: 30px;

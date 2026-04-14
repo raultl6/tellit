@@ -75,23 +75,19 @@
                             <input type="hidden" name="contenido_id" value="{{ $contenido->id }}">
 
                             <div class="mb-3">
-                                <label for="puntuacion" class="form-label font-weight-bold">Puntuación:</label>
-                                <select name="puntuacion" id="puntuacion"
-                                    class="form-select w-auto d-inline-block @error('puntuacion') is-invalid @enderror"
-                                    required>
-                                    <option value="" disabled selected>Selecciona...</option>
-                                    <option value="5" {{ old('puntuacion') == '5' ? 'selected' : '' }}>5 Estrellas - Excelente
-                                    </option>
-                                    <option value="4" {{ old('puntuacion') == '4' ? 'selected' : '' }}>4 Estrellas - Muy Buena
-                                    </option>
-                                    <option value="3" {{ old('puntuacion') == '3' ? 'selected' : '' }}>3 Estrellas - Buena
-                                    </option>
-                                    <option value="2" {{ old('puntuacion') == '2' ? 'selected' : '' }}>2 Estrellas - Regular
-                                    </option>
-                                    <option value="1" {{ old('puntuacion') == '1' ? 'selected' : '' }}>1 Estrella - Mala</option>
-                                </select>
+                                <label class="form-label font-weight-bold">Puntuación:</label>
+                                <div id="star-rating" class="review-stars-interactive" data-old-value="{{ old('puntuacion') }}">
+                                    <!-- Las estrellas se pintarán vivas con JavaScript -->
+                                    <span class="star interactive-star" data-value="1">★</span>
+                                    <span class="star interactive-star" data-value="2">★</span>
+                                    <span class="star interactive-star" data-value="3">★</span>
+                                    <span class="star interactive-star" data-value="4">★</span>
+                                    <span class="star interactive-star" data-value="5">★</span>
+                                </div>
+                                <input type="hidden" name="puntuacion" id="puntuacion_input" value="{{ old('puntuacion') }}" required>
+                                
                                 @error('puntuacion')
-                                    <br><small class="text-danger">{{ $message }}</small>
+                                    <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
 
@@ -119,4 +115,53 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.interactive-star');
+            const input = document.getElementById('puntuacion_input');
+            const ratingContainer = document.getElementById('star-rating');
+            const oldValue = ratingContainer.getAttribute('data-old-value');
+
+            // Función para pintar estrellas hasta el valor X
+            function highlightStars(value) {
+                stars.forEach(star => {
+                    star.style.color = star.getAttribute('data-value') <= value ? '#fbbf24' : '#ddd';
+                });
+            }
+
+            // Si falló la validación y había value anterior, restaurarlo
+            if (oldValue) highlightStars(oldValue);
+
+            stars.forEach(star => {
+                // Al pasar por encima, iluminamos
+                star.addEventListener('mouseover', function() {
+                    highlightStars(this.getAttribute('data-value'));
+                });
+
+                // Al salir, volvemos a la nota seleccionada o cero
+                star.addEventListener('mouseout', function() {
+                    highlightStars(input.value || oldValue || 0);
+                });
+
+                // Al hacer clic, fijamos el valor definitivo
+                star.addEventListener('click', function() {
+                    input.value = this.getAttribute('data-value');
+                    highlightStars(input.value);
+                });
+                
+                // Estilos rápidos CSS aplicados por JS 
+                star.style.cursor = 'pointer';
+                star.style.fontSize = '2rem';
+                star.style.transition = 'color 0.2s ease-in-out';
+                
+                // Limpieza inicial
+                if(!input.value && !oldValue) {
+                    star.style.color = '#ddd';
+                }
+            });
+        });
+    </script>
+    @endpush
 @endsection

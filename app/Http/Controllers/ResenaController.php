@@ -31,12 +31,10 @@ class ResenaController extends Controller
         $validatedData = $request->validate([
             'puntuacion' => 'required|integer|min:1|max:5',
             'comentario' => 'required|string|max:1000',
-            // Asumimos que la tabla de contenidos en base de datos se llama 'contenidos'
             'contenido_id' => 'required|exists:contenidos,id',
         ]);
 
         // 2. Asignamos automáticamente el user_id usando el usuario autenticado
-        // Ojo: Para que Auth::id() funcione el usuario debe estar logueado (protege tus rutas con middleware 'auth')
         $validatedData['user_id'] = Auth::id();
 
         // 3. Guardamos la reseña en la base de datos
@@ -65,7 +63,13 @@ class ResenaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $resena = Resena::findOrFail($id);
+
+        if (Auth::id() != $resena->user_id) {
+            abort(403, 'No tienes permiso para editar esta reseña.');
+        }
+
+        return view('resenas.edit', compact('resena'));
     }
 
     /**
@@ -77,7 +81,22 @@ class ResenaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $resena = Resena::findOrFail($id);
+
+        if (Auth::id() != $resena->user_id) {
+            abort(403, 'No tienes permiso para actualizar esta reseña.');
+        }
+
+        $validatedData = $request->validate([
+            'puntuacion' => 'required|integer|min:1|max:5',
+            'comentario' => 'required|string|max:1000',
+            'contenido_id' => 'required|exists:contenidos,id',
+        ]);
+
+        $resena->update($validatedData);
+
+        return redirect()->route('contenidos.show', $resena->contenido->slug)
+                         ->with('success', '¡Tu reseña ha sido actualizada exitosamente!');
     }
 
     /**
@@ -88,6 +107,16 @@ class ResenaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $resena = Resena::findOrFail($id);
+
+        if (Auth::id() != $resena->user_id) {
+            abort(403, 'No tienes permiso para borrar esta reseña.');
+        }
+
+        $slug = $resena->contenido->slug;
+        $resena->delete();
+
+        return redirect()->route('contenidos.show', $slug)
+                         ->with('success', '¡Tu reseña ha sido eliminada exitosamente!');
     }
 }

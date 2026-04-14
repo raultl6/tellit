@@ -47,13 +47,31 @@
                 <div class="reviews-list">
                     @forelse($contenido->resenas as $resena)
                         <div class="review-card">
-                            <div class="review-header">
-                                <strong>{{ $resena->user->name ?? 'Usuario Anónimo' }}</strong>
-                                <span class="review-rating">
-                                    {{ str_repeat('★', $resena->puntuacion) }}
-                                </span>
+                            <div class="review-header" style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <strong>{{ $resena->user->name ?? 'Usuario Anónimo' }}</strong>
+                                    <span class="review-rating">
+                                        {{ str_repeat('★', $resena->puntuacion) }}
+                                    </span>
+                                </div>
+                                @auth
+                                    @if(Auth::id() === $resena->user_id)
+                                        <div style="display: flex; gap: 8px;">
+                                            <a href="{{ route('resenas.edit', $resena->id) }}" class="action-btn" style="text-decoration: none; padding: 4px 8px; font-size: 0.8rem;">
+                                                ✏️ Editar
+                                            </a>
+                                            <form action="{{ route('resenas.destroy', $resena->id) }}" method="POST" style="margin: 0;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="action-btn" style="padding: 4px 8px; font-size: 0.8rem; color: #dc2626; border-color: #fca5a5;" onclick="return confirm('¿Seguro que deseas borrar esta reseña?');">
+                                                    🗑️ Borrar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endif
+                                @endauth
                             </div>
-                            <p>{{ $resena->comentario }}</p>
+                            <p style="margin-top: 10px;">{{ $resena->comentario }}</p>
                         </div>
                     @empty
                         <p class="text-gray">Aún no hay reseñas. ¡Sé el primero en opinar!</p>

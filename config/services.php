@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // API de las series-peliculas
+
+    'tmdb' => [
+        'key' => env('TMDB_API_KEY'),
+        'base_url' => env('TMDB_BASE_URL'),
+    ],
 ];

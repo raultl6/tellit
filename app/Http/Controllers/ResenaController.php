@@ -6,63 +6,35 @@ use App\Models\Resena;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ResenaController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+class ResenaController extends Controller{
+
+    // CREACION DE RESEÑAS
+    public function create(){
         $contenidos = \App\Models\Contenido::all();
         return view('resenas.create', compact('contenidos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        // 1. Validamos los datos entrantes del request
+    // GUARDADO DE RESEÑAS
+     public function store(Request $request){
+        // 1. Se validan los datos entrantes del request
         $validatedData = $request->validate([
             'puntuacion' => 'required|integer|min:1|max:5',
             'comentario' => 'required|string|max:1000',
             'contenido_id' => 'required|exists:contenidos,id',
         ]);
 
-        // 2. Asignamos automáticamente el user_id usando el usuario autenticado
+        // 2. Se asigna automáticamente el user_id usando el usuario autenticado
         $validatedData['user_id'] = Auth::id();
 
-        // 3. Guardamos la reseña en la base de datos
+        // 3. Se guarda la reseña en la base de datos
         $resena = Resena::create($validatedData);
 
-        // 4. Redirigimos con un mensaje de éxito
-        return redirect()->route('contenidos.show', $resena->contenido->slug)->with('success', '¡Tu reseña ha sido publicada exitosamente!');
+        // 4. Se redirige con un mensaje de éxito
+        return redirect()->route('contenidos.show', $resena->contenido->slug)->with('success', 'Reseña publicada correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
+    // EDICION DE RESEÑAS
+    public function edit($id){
         $resena = Resena::findOrFail($id);
 
         if (Auth::id() != $resena->user_id) {
@@ -72,15 +44,8 @@ class ResenaController extends Controller
         return view('resenas.edit', compact('resena'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
+    // ACTUALIZACION DE RESEÑAS
+    public function update(Request $request, $id){
         $resena = Resena::findOrFail($id);
 
         if (Auth::id() != $resena->user_id) {
@@ -96,17 +61,11 @@ class ResenaController extends Controller
         $resena->update($validatedData);
 
         return redirect()->route('contenidos.show', $resena->contenido->slug)
-                         ->with('success', '¡Tu reseña ha sido actualizada exitosamente!');
+                         ->with('success', 'Reseña actualizada correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    // ELIMINACION DE RESEÑAS
+    public function destroy($id){
         $resena = Resena::findOrFail($id);
 
         if (Auth::id() != $resena->user_id) {
@@ -117,6 +76,6 @@ class ResenaController extends Controller
         $resena->delete();
 
         return redirect()->route('contenidos.show', $slug)
-                         ->with('success', '¡Tu reseña ha sido eliminada exitosamente!');
+                         ->with('success', 'Reseña eliminada correctamente.');
     }
 }

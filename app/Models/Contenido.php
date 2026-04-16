@@ -9,6 +9,20 @@ class Contenido extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'titulo',
+        'slug',
+        'descripcion',
+        'imagen_url',
+        'año',
+        'tipo',
+        'puntuacion',
+        'director',
+        'duracion',
+        'reparto',
+        'categoria_id',
+    ];
+
     // Relación: Una peli pertenece a una categoría
     public function categoria()
     {

@@ -62,6 +62,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/usuarios', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
     Route::get('/resenas', [App\Http\Controllers\AdminController::class, 'reviews'])->name('admin.reviews');
     Route::get('/reportes', [App\Http\Controllers\AdminController::class, 'reports'])->name('admin.reports');
+
+    // TMDB y Contenidos
+    Route::get('/contenidos/nuevo', [App\Http\Controllers\AdminController::class, 'createContenido'])->name('admin.contenidos.create');
+    Route::get('/tmdb/search', [App\Http\Controllers\AdminController::class, 'searchTmdb'])->name('admin.tmdb.search');
+    Route::post('/contenidos/store-tmdb', [App\Http\Controllers\AdminController::class, 'storeTmdb'])->name('admin.contenidos.storeTmdb');
 });
 
 

@@ -26,7 +26,7 @@
         <div class="tarjeta">
             <div class="flex justify-between mb-4">
                 <h3 style="margin:0;">Gestión de Contenido</h3>
-                <button class="boton btn-mint" style="padding: 8px 15px; font-size: 0.9rem;">+ Nuevo Título</button>
+                <a href="{{ route('admin.contenidos.create') }}" class="boton btn-mint" style="padding: 8px 15px; font-size: 0.9rem;">+ Nuevo Título</a>
             </div>
 
             <table class="tabla-admin">

@@ -24,7 +24,6 @@ Route::get('/', function () {
 
 Route::get('/explorar', [ContenidoController::class, 'index'])->name('contenidos.index');
 
-
 // La parte {slug} es el comodín, como el nombre facil (ej: inception, breaking-bad)
 Route::get('/ver/{slug}', [ContenidoController::class, 'show'])->name('contenidos.show');
 

@@ -31,10 +31,10 @@
                 @endif
             </div>
             <div class="header-right">
-                <div class="search-container">
-                    <input type="text" placeholder="Buscar..." class="search-input">
-                    <a href="#" class="search-icon-small">🔍</a>
-                </div>
+                <form action="{{ route('contenidos.index') }}" method="GET" class="search-container">
+                    <input type="text" name="query" placeholder="Buscar..." class="search-input" value="{{ request('query') }}">
+                    <button type="submit" class="search-icon-small" style="background:none; border:none; cursor:pointer; padding:0;">🔍</button>
+                </form>
                 @auth
                     <div class="cabecera-usuario user-header-container"
                         onclick="document.getElementById('menuUsuario').classList.toggle('show')">

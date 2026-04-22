@@ -8,10 +8,20 @@ use Illuminate\Http\Request;
 
 class ContenidoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // 1. Traem todo el contenido (Pelis y Series)
-        $contenidos = Contenido::all();
+        $query = Contenido::query();
+
+        if ($request->filled('query')) {
+            $query->where('titulo', 'LIKE', '%' . $request->input('query') . '%');
+        }
+
+        if ($request->filled('categoria')) {
+            $query->where('categoria_id', $request->input('categoria'));
+        }
+
+        // 1. Trae el contenido filtrado
+        $contenidos = $query->get();
 
         // 2. Trae las categorías para el filtro del sidebar
         $categorias = Categoria::all();

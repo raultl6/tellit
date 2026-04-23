@@ -55,6 +55,12 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            // Verificar si está baneado
+            if (Auth::user()->is_banned) {
+                Auth::logout();
+                return back()->with('error', 'Tu cuenta ha sido suspendida. Contacta a soporte para más información.');
+            }
+
             $request->session()->regenerate();
             return redirect()->intended(route('home'));
         }

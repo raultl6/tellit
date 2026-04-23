@@ -7,27 +7,34 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use App\Models\Contenido;
 use App\Models\Categoria;
+use App\Models\User;
+use App\Models\Resena;
+use App\Models\Reporte;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $contenidos = Contenido::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.index', compact('contenidos'));
     }
 
     public function users()
     {
-        return view('admin.users');
+        $usuarios = User::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.users', compact('usuarios'));
     }
 
     public function reviews()
     {
-        return view('admin.reviews');
+        $resenas = Resena::with(['user', 'contenido'])->orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.reviews', compact('resenas'));
     }
 
     public function reports()
     {
-        return view('admin.reports');
+        $reportes = Reporte::with(['user', 'reportable'])->where('estado', 'pendiente')->orderBy('created_at', 'asc')->paginate(10);
+        return view('admin.reports', compact('reportes'));
     }
 
     // --- INTEGRACIÓN TMDB ---
@@ -164,5 +171,58 @@ class AdminController extends Controller
         ]);
 
         return redirect()->route('admin.index')->with('success', "¡'{$titulo}' importado correctamente desde TMDB!");
+    }
+
+    public function destroyContenido($id)
+    {
+        $contenido = Contenido::findOrFail($id);
+        $contenido->delete();
+
+        return redirect()->route('admin.index')->with('success', 'Título eliminado correctamente.');
+    }
+
+    public function toggleBan($id)
+    {
+        $usuario = User::findOrFail($id);
+        
+        // Evitar que el admin se banee a sí mismo
+        if ($usuario->id === auth()->id()) {
+            return redirect()->route('admin.users')->with('error', 'No puedes banearte a ti mismo.');
+        }
+
+        $usuario->is_banned = !$usuario->is_banned;
+        $usuario->save();
+
+        $estado = $usuario->is_banned ? 'baneado' : 'desbaneado';
+        return redirect()->route('admin.users')->with('success', "El usuario {$usuario->name} ha sido {$estado}.");
+    }
+
+    public function destroyReview($id)
+    {
+        $resena = Resena::findOrFail($id);
+        $resena->delete();
+
+        return redirect()->route('admin.reviews')->with('success', 'Reseña eliminada correctamente.');
+    }
+
+    public function resolveReport(Request $request, $id)
+    {
+        $reporte = Reporte::findOrFail($id);
+        $accion = $request->input('accion'); // 'ignorar' o 'borrar'
+
+        if ($accion === 'borrar') {
+            // Borrar el recurso asociado
+            if ($reporte->reportable) {
+                $reporte->reportable->delete();
+            }
+            $mensaje = 'Recurso borrado y reporte resuelto.';
+        } else {
+            $mensaje = 'Reporte marcado como resuelto (ignorado).';
+        }
+
+        $reporte->estado = 'revisado'; // Update 'estado' enum: 'pendiente', 'revisado'
+        $reporte->save();
+
+        return redirect()->route('admin.reports')->with('success', $mensaje);
     }
 }

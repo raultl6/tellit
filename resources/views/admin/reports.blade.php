@@ -17,7 +17,18 @@
             <a href="{{ route('admin.reports') }}" class="boton boton-nav-admin danger-active">Reportes ⚠️</a>
         </div>
 
-        <div class="tarjeta">
+        @if(session('success'))
+            <div class="alerta alerta-exito mb-4 p-3 mt-4" style="background: #10b981; color: white; border-radius: 4px;">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alerta alerta-error mb-4 p-3 mt-4" style="background: #ef4444; color: white; border-radius: 4px;">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <div class="tarjeta mt-4">
             <h3 class="mb-4">Reportes Pendientes</h3>
             <table class="tabla-admin">
                 <thead>
@@ -29,26 +40,43 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Reseña de <b>UserX</b> en "Matrix"</td>
-                        <td>Spoiler sin avisar</td>
-                        <td>UsuarioEjemplo</td>
-                        <td>
-                            <button class="boton btn-neutral btn-sm">Ignorar</button>
-                            <button class="boton btn-mint btn-sm">Borrar Reseña</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Comentario de <b>Troll22</b></td>
-                        <td>Insultos / Ofensivo</td>
-                        <td>Ana123</td>
-                        <td>
-                            <button class="boton btn-neutral btn-sm">Ignorar</button>
-                            <button class="boton boton-primario btn-sm">Banear Usuario</button>
-                        </td>
-                    </tr>
+                    @forelse ($reportes as $reporte)
+                        <tr>
+                            <td>
+                                @if(class_basename($reporte->reportable_type) === 'Resena')
+                                    Reseña de <b>{{ $reporte->reportable->user->name ?? 'Usuario borrado' }}</b>
+                                @else
+                                    {{ class_basename($reporte->reportable_type) }} #{{ $reporte->reportable_id }}
+                                @endif
+                            </td>
+                            <td>{{ $reporte->motivo }}</td>
+                            <td>{{ $reporte->user->name ?? 'Anónimo' }}</td>
+                            <td style="display: flex; gap: 5px;">
+                                <form action="{{ route('admin.reports.resolve', $reporte->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="accion" value="ignorar">
+                                    <button type="submit" class="boton btn-neutral btn-sm" style="padding: 4px 10px; font-size: 0.8rem;">Ignorar</button>
+                                </form>
+                                <form action="{{ route('admin.reports.resolve', $reporte->id) }}" method="POST" onsubmit="return confirm('¿Borrar el recurso de forma permanente?');">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="accion" value="borrar">
+                                    <button type="submit" class="boton btn-mint btn-sm" style="padding: 4px 10px; font-size: 0.8rem;">Borrar Recurso</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center">No hay reportes pendientes.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
+            
+            <div class="mt-4">
+                {{ $reportes->links() }}
+            </div>
         </div>
     </div>
 @endsection

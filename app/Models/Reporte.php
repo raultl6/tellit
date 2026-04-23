@@ -8,4 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Reporte extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'reportable_id',
+        'reportable_type',
+        'motivo',
+        'estado',
+    ];
+
+    public function reportable()
+    {
+        return $this->morphTo();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -17,7 +17,18 @@
             <a href="{{ route('admin.reports') }}" class="boton boton-nav-admin">Reportes ⚠️</a>
         </div>
 
-        <div class="tarjeta">
+        @if(session('success'))
+            <div class="alerta alerta-exito mb-4 p-3 mt-4" style="background: #10b981; color: white; border-radius: 4px;">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alerta alerta-error mb-4 p-3 mt-4" style="background: #ef4444; color: white; border-radius: 4px;">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <div class="tarjeta mt-4">
             <h3 class="mb-4">Gestión de Usuarios</h3>
             <table class="tabla-admin">
                 <thead>
@@ -30,29 +41,47 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>U01</td>
-                        <td>UsuarioEjemplo</td>
-                        <td>user@mail.com</td>
-                        <td><span class="text-green">Activo</span></td>
-                        <td><a href="#" class="action-link-delete">[Banear]</a></td>
-                    </tr>
-                    <tr>
-                        <td>U02</td>
-                        <td>Cinefilo99</td>
-                        <td>cine@mail.com</td>
-                        <td><span class="text-green">Activo</span></td>
-                        <td><a href="#" class="action-link-delete">[Banear]</a></td>
-                    </tr>
-                    <tr>
-                        <td>U03</td>
-                        <td>Spammer123</td>
-                        <td>spam@mail.com</td>
-                        <td><span class="text-red">Baneado</span></td>
-                        <td><a href="#" class="text-gray">[Desbanear]</a></td>
-                    </tr>
+                    @forelse ($usuarios as $usuario)
+                        <tr>
+                            <td>{{ $usuario->id }}</td>
+                            <td>{{ $usuario->name }}</td>
+                            <td>{{ $usuario->email }}</td>
+                            <td>
+                                @if($usuario->is_banned)
+                                    <span class="text-red">Baneado</span>
+                                @else
+                                    <span class="text-green">Activo</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if($usuario->id !== auth()->id())
+                                    <form action="{{ route('admin.users.ban', $usuario->id) }}" method="POST" onsubmit="return confirm('¿Confirmar acción sobre este usuario?');">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="action-link-delete" style="background: none; border: none; cursor: pointer; padding: 0;">
+                                            @if($usuario->is_banned)
+                                                <span class="text-gray">[Desbanear]</span>
+                                            @else
+                                                [Banear]
+                                            @endif
+                                        </button>
+                                    </form>
+                                @else
+                                    <span class="text-gray" style="font-size: 0.8rem;">(Tú)</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center">No hay usuarios registrados.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
+            
+            <div class="mt-4">
+                {{ $usuarios->links() }}
+            </div>
         </div>
     </div>
 @endsection

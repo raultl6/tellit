@@ -10,6 +10,17 @@
     <div style="padding-top: 2rem;">
         <h2 class="text-center mb-4">Panel de Administración</h2>
 
+        @if(session('success'))
+            <div class="alerta alerta-exito mb-4 p-3" style="background: #10b981; color: white; border-radius: 4px;">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alerta alerta-error mb-4 p-3" style="background: #ef4444; color: white; border-radius: 4px;">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <div
             style="background: #1f2937; padding: 15px; border-radius: 6px; margin-bottom: 20px; display: flex; gap: 10px; overflow-x: auto;">
             <a href="{{ route('admin.index') }}" class="boton"
@@ -39,49 +50,32 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>                    
-                    <tr>
-                        <td>001</td>
-                        <td>The Matrix</td>
-                        <td>1999</td>
-                        <td>Película</td>
-                        <td>
-                            <a href="#" class="action-link-edit">[Editar]</a>
-                            <a href="#" class="action-link-delete">[Borrar]</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Inception</td>
-                        <td>2010</td>
-                        <td>Película</td>
-                        <td>
-                            <a href="#" class="action-link-edit">[Editar]</a>
-                            <a href="#" class="action-link-delete">[Borrar]</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Breaking Bad</td>
-                        <td>2008</td>
-                        <td>Serie</td>
-                        <td>
-                            <a href="#" class="action-link-edit">[Editar]</a>
-                            <a href="#" class="action-link-delete">[Borrar]</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>004</td>
-                        <td>Stranger Things</td>
-                        <td>2016</td>
-                        <td>Serie</td>
-                        <td>
-                            <a href="#" class="action-link-edit">[Editar]</a>
-                            <a href="#" class="action-link-delete">[Borrar]</a>
-                        </td>
-                    </tr>
+                <tbody>
+                    @forelse ($contenidos as $contenido)
+                        <tr>
+                            <td>{{ $contenido->id }}</td>
+                            <td>{{ $contenido->titulo }}</td>
+                            <td>{{ $contenido->año ?? 'N/A' }}</td>
+                            <td>{{ ucfirst($contenido->tipo) }}</td>
+                            <td style="display: flex; gap: 10px;">
+                                <form action="{{ route('admin.contenidos.destroy', $contenido->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas borrar este título?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="action-link-delete" style="background: none; border: none; cursor: pointer; padding: 0;">[Borrar]</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center">No hay títulos registrados.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
+            
+            <div class="mt-4">
+                {{ $contenidos->links() }}
+            </div>
         </div>
     </div>
 @endsection

@@ -17,7 +17,18 @@
             <a href="{{ route('admin.reports') }}" class="boton boton-nav-admin">Reportes ⚠️</a>
         </div>
 
-        <div class="tarjeta">
+        @if(session('success'))
+            <div class="alerta alerta-exito mb-4 p-3 mt-4" style="background: #10b981; color: white; border-radius: 4px;">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alerta alerta-error mb-4 p-3 mt-4" style="background: #ef4444; color: white; border-radius: 4px;">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <div class="tarjeta mt-4">
             <h3 class="mb-4">Últimas Reseñas Publicadas</h3>
             <table class="tabla-admin">
                 <thead>
@@ -30,29 +41,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Hoy, 10:00</td>
-                        <td>PedroP</td>
-                        <td>Barbie</td>
-                        <td>⭐⭐⭐⭐⭐</td>
-                        <td><a href="#" class="action-link-delete">[Borrar]</a></td>
-                    </tr>
-                    <tr>
-                        <td>Ayer, 22:30</td>
-                        <td>MariaL</td>
-                        <td>Oppenheimer</td>
-                        <td>⭐⭐⭐⭐</td>
-                        <td><a href="#" class="action-link-delete">[Borrar]</a></td>
-                    </tr>
-                    <tr>
-                        <td>Ayer, 18:15</td>
-                        <td>Critic007</td>
-                        <td>Flash</td>
-                        <td>⭐</td>
-                        <td><a href="#" class="action-link-delete">[Borrar]</a></td>
-                    </tr>
+                    @forelse ($resenas as $resena)
+                        <tr>
+                            <td>{{ $resena->created_at->format('d/m/Y H:i') }}</td>
+                            <td>{{ $resena->user->name ?? 'Usuario borrado' }}</td>
+                            <td>{{ Str::limit($resena->contenido->titulo ?? 'Contenido borrado', 20) }}</td>
+                            <td>{{ str_repeat('⭐', $resena->puntuacion) }}</td>
+                            <td>
+                                <form action="{{ route('admin.reviews.destroy', $resena->id) }}" method="POST" onsubmit="return confirm('¿Confirmar el borrado de esta reseña?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="action-link-delete" style="background: none; border: none; cursor: pointer; padding: 0;">[Borrar]</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center">No hay reseñas publicadas.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
+            
+            <div class="mt-4">
+                {{ $resenas->links() }}
+            </div>
         </div>
     </div>
 @endsection

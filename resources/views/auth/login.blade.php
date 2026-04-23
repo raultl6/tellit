@@ -22,6 +22,12 @@
                 <p class="text-gray auth-subtitle">Bienvenido de nuevo</p>
             </div>
 
+            @if(session('error'))
+                <div class="auth-errors" style="background: #fee2e2; color: #b91c1c; padding: 10px; border-radius: 6px; margin-bottom: 20px; text-align: center;">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             <form action="{{ route('login.post') }}" method="POST">
                 @csrf
                 <div class="form-group auth-form-group">

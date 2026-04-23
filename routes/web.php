@@ -59,13 +59,17 @@ Route::resource('resenas', App\Http\Controllers\ResenaController::class)->except
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::get('/usuarios', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
+    Route::put('/usuarios/{id}/ban', [App\Http\Controllers\AdminController::class, 'toggleBan'])->name('admin.users.ban');
     Route::get('/resenas', [App\Http\Controllers\AdminController::class, 'reviews'])->name('admin.reviews');
+    Route::delete('/resenas/{id}', [App\Http\Controllers\AdminController::class, 'destroyReview'])->name('admin.reviews.destroy');
     Route::get('/reportes', [App\Http\Controllers\AdminController::class, 'reports'])->name('admin.reports');
+    Route::put('/reportes/{id}/resolver', [App\Http\Controllers\AdminController::class, 'resolveReport'])->name('admin.reports.resolve');
 
     // TMDB y Contenidos
     Route::get('/contenidos/nuevo', [App\Http\Controllers\AdminController::class, 'createContenido'])->name('admin.contenidos.create');
     Route::get('/tmdb/search', [App\Http\Controllers\AdminController::class, 'searchTmdb'])->name('admin.tmdb.search');
     Route::post('/contenidos/store-tmdb', [App\Http\Controllers\AdminController::class, 'storeTmdb'])->name('admin.contenidos.storeTmdb');
+    Route::delete('/contenidos/{id}', [App\Http\Controllers\AdminController::class, 'destroyContenido'])->name('admin.contenidos.destroy');
 });
 
 

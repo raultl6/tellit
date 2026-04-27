@@ -31,10 +31,12 @@
                 @endif
             </div>
             <div class="header-right">
+                @if(!request()->routeIs('home'))
                 <form action="{{ route('contenidos.index') }}" method="GET" class="search-container">
                     <input type="text" name="query" placeholder="Buscar..." class="search-input" value="{{ request('query') }}">
                     <button type="submit" class="search-icon-small" style="background:none; border:none; cursor:pointer; padding:0;">🔍</button>
                 </form>
+                @endif
                 @auth
                     <div class="cabecera-usuario user-header-container"
                         onclick="document.getElementById('menuUsuario').classList.toggle('show')">
@@ -74,7 +76,7 @@
         <div class="contenedor footer-grid">
             <div>
                 <h3 class="footer-title">TELLIT</h3>
-                <p class="footer-copyright">© 2023. Todos los derechos reservados.</p>
+                <p class="footer-copyright">© 2026. Todos los derechos reservados.</p>
             </div>
             <div>
                 <h4 class="footer-title">Enlaces</h4>

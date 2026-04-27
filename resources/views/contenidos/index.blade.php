@@ -3,7 +3,7 @@
 @section('titulo', 'Explorar')
 
 @section('contenido')
-    <div class="sidebar-layout">
+    <div class="sidebar-layout" style="margin-top: 2rem; margin-bottom: 5rem;">
 
         <aside class="barra-lateral">
             <form action="{{ route('contenidos.index') }}" method="GET" class="caja-lateral">

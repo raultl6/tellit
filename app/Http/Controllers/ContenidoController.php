@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contenido;
 use App\Models\Categoria;
+use App\Models\Resena;
 use Illuminate\Http\Request;
 
 class ContenidoController extends Controller
@@ -36,5 +37,22 @@ class ContenidoController extends Controller
         return view('contenidos.show', compact('contenido'));
     }
 
-}
+    public function home()
+    {
+        $ultimosContenidos = Contenido::orderBy('created_at', 'desc')->take(4)->get();
+        $resenasRecientes = Resena::with(['user', 'contenido'])->orderBy('created_at', 'desc')->take(3)->get();
+        
+        $destacado = Contenido::orderBy('created_at', 'desc')->first();
 
+        return view('seccion.inicio', compact('ultimosContenidos', 'resenasRecientes', 'destacado'));
+    }
+
+    public function random()
+    {
+        $contenido = Contenido::inRandomOrder()->first();
+        if ($contenido) {
+            return redirect()->route('contenidos.show', $contenido->slug);
+        }
+        return redirect()->route('home');
+    }
+}

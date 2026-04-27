@@ -18,9 +18,8 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('/', function () {
-    return view('seccion.inicio');
-})->name('home');
+Route::get('/', [ContenidoController::class, 'home'])->name('home');
+Route::get('/aleatorio', [ContenidoController::class, 'random'])->name('contenidos.random');
 
 Route::get('/explorar', [ContenidoController::class, 'index'])->name('contenidos.index');
 

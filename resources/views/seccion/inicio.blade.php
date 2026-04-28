@@ -81,10 +81,7 @@
     <div id="modalSorprendeme" class="modal-sorprendeme">
         <div class="modal-sorprendeme-content">
             <span class="modal-sorprendeme-close" onclick="cerrarModalSorprendeme()">&times;</span>
-            <div id="modalSorprendemeCargando" class="modal-sorprendeme-cargando">
-                <p>Buscando algo increíble para ti...</p>
-            </div>
-            <div id="modalSorprendemeData" style="display: none;" class="modal-sorprendeme-body">
+            <div id="modalSorprendemeData" class="modal-sorprendeme-body">
                 <div class="modal-sorprendeme-img-container">
                     <img id="modalSorprendemeImg" src="" alt="Poster" class="modal-sorprendeme-img">
                 </div>
@@ -110,26 +107,29 @@
 
         function abrirModalSorprendeme() {
             document.getElementById('modalSorprendeme').classList.add('show');
-            document.getElementById('modalSorprendemeCargando').style.display = 'block';
-            document.getElementById('modalSorprendemeData').style.display = 'none';
+            document.getElementById('modalSorprendemeData').classList.remove('cargado');
         }
 
         function cerrarModalSorprendeme() {
             document.getElementById('modalSorprendeme').classList.remove('show');
         }
 
-        function cargarSorpresaAleatoria() {
-            document.getElementById('modalSorprendemeCargando').style.display = 'block';
-            document.getElementById('modalSorprendemeData').style.display = 'none';
+        async function cargarSorpresaAleatoria() {
+            document.getElementById('modalSorprendemeData').classList.remove('cargado');
 
-            fetch('{{ route('contenidos.random') }}', {
-                headers: {
-                    'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
+            try {
+                const [response] = await Promise.all([
+                    fetch('{{ route('contenidos.random') }}', {
+                        headers: {
+                            'Accept': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    }),
+                    new Promise(resolve => setTimeout(resolve, 300))
+                ]);
+
+                const data = await response.json();
+
                 if(data.error) {
                     alert('No se encontraron contenidos.');
                     cerrarModalSorprendeme();
@@ -148,17 +148,12 @@
                 document.getElementById('modalSorprendemeDesc').innerText = data.descripcion || 'Sin descripción disponible.';
                 document.getElementById('modalSorprendemeBtn').href = data.url;
 
-                document.getElementById('modalSorprendemeCargando').style.display = 'none';
-                // Usar display flex en pantallas grandes, pero style.display overriding classes requires setting flex
-                document.getElementById('modalSorprendemeData').style.display = window.innerWidth >= 600 ? 'flex' : 'block';
-                // Añadimos una pequeña verificación por si cambia el tamaño de la ventana
-                document.getElementById('modalSorprendemeData').classList.add('modal-sorprendeme-body');
-            })
-            .catch(error => {
+                document.getElementById('modalSorprendemeData').classList.add('cargado');
+            } catch (error) {
                 console.error('Error:', error);
                 alert('Hubo un error al buscar un contenido aleatorio.');
                 cerrarModalSorprendeme();
-            });
+            }
         }
 
         // Cerrar modal al hacer click fuera

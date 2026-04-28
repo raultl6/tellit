@@ -351,6 +351,11 @@
 .modal-sorprendeme-body {
     display: flex;
     flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.modal-sorprendeme-body.cargado {
+    opacity: 1;
 }
 @media (min-width: 600px) {
     .modal-sorprendeme-body {
@@ -392,10 +397,7 @@
     display: flex;
     gap: 1rem;
 }
-.modal-sorprendeme-cargando {
-    padding: 3rem;
-    text-align: center;
-}
+
 .modal-btn-otra-vez {
     border: 1px solid var(--primary-color);
     background: transparent;

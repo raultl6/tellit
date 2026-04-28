@@ -47,11 +47,23 @@ class ContenidoController extends Controller
         return view('seccion.inicio', compact('ultimosContenidos', 'resenasRecientes', 'destacado'));
     }
 
-    public function random()
+    public function random(Request $request)
     {
         $contenido = Contenido::inRandomOrder()->first();
         if ($contenido) {
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'titulo' => $contenido->titulo,
+                    'descripcion' => \Illuminate\Support\Str::limit($contenido->descripcion, 200),
+                    'imagen_url' => $contenido->imagen_url,
+                    'url' => route('contenidos.show', $contenido->slug)
+                ]);
+            }
             return redirect()->route('contenidos.show', $contenido->slug);
+        }
+        
+        if ($request->wantsJson()) {
+            return response()->json(['error' => 'No hay contenidos'], 404);
         }
         return redirect()->route('home');
     }

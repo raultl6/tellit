@@ -78,7 +78,7 @@
     @endif
     @push('css')
     <style>
-    /* Modal Sorpréndeme */
+    /* Botón sorpréndeme */
     .modal-sorprendeme {
         display: none;
         position: fixed;
@@ -176,7 +176,7 @@
     </style>
     @endpush
 
-    <!-- Modal Sorpréndeme -->
+    <!-- Botón Sorpréndeme -->
     <div id="modalSorprendeme" class="modal-sorprendeme">
         <div class="modal-sorprendeme-content">
             <span class="modal-sorprendeme-close" onclick="cerrarModalSorprendeme()">&times;</span>

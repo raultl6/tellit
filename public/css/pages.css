@@ -172,3 +172,239 @@
     font-size: 3rem;
     margin-bottom: 10px;
 }
+
+.portada-destacada {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.portada-titulo {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--primary-color);
+}
+
+.portada-subtitulo {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 0;
+}
+
+.portada-buscador {
+    margin-top: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.portada-input {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 8px 0 0 8px;
+    border: 1px solid #e5e7eb;
+    border-right: none;
+    background: white;
+    color: var(--text-dark);
+    outline: none;
+    font-size: 1rem;
+}
+
+.portada-btn {
+    border-radius: 0 8px 8px 0;
+    padding: 0 1.5rem;
+    margin: 0;
+    border: 1px solid var(--primary-color);
+}
+
+.seccion-añadidos {
+    margin-bottom: 3rem;
+}
+
+.tarjeta-añadido {
+    padding: 0 !important;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-añadido-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px 8px 0 0;
+}
+
+.tarjeta-añadido-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.texto-truncado-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tarjeta-añadido-placeholder {
+    height: 250px;
+    border-radius: 8px 8px 0 0;
+}
+
+.caja-aleatoria {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.seccion-reseñas {
+    margin-bottom: 5rem;
+}
+
+.tarjeta-reseña {
+    display: flex;
+    flex-direction: column;
+}
+
+.reseña-usuario-info {
+    margin-left: 10px;
+}
+
+.reseña-estrellas {
+    letter-spacing: 2px;
+}
+
+.reseña-titulo-obra {
+    color: var(--primary-color);
+}
+
+.reseña-comentario {
+    font-style: italic;
+    flex: 1;
+}
+
+/* Modal Sorpréndeme */
+.modal-sorprendeme {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+}
+.modal-sorprendeme.show {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out;
+}
+.modal-sorprendeme-content {
+    background-color: var(--bg-card, #fff);
+    padding: 0;
+    border-radius: 12px;
+    max-width: 700px;
+    width: 90%;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+.modal-sorprendeme-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-sorprendeme-close:hover {
+    background: var(--primary-color, #e50914);
+}
+.modal-sorprendeme-body {
+    display: flex;
+    flex-direction: column;
+}
+@media (min-width: 600px) {
+    .modal-sorprendeme-body {
+        flex-direction: row;
+    }
+}
+.modal-sorprendeme-img-container {
+    flex: 0 0 40%;
+    background-color: var(--bg-dark, #111);
+    min-height: 300px;
+}
+.modal-sorprendeme-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.modal-sorprendeme-info {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.modal-sorprendeme-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color, #e50914);
+    line-height: 1.2;
+}
+.modal-sorprendeme-desc {
+    font-size: 1rem;
+    color: var(--text-gray, #ccc);
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+.modal-sorprendeme-buttons {
+    display: flex;
+    gap: 1rem;
+}
+.modal-sorprendeme-cargando {
+    padding: 3rem;
+    text-align: center;
+}
+.modal-btn-otra-vez {
+    border: 1px solid var(--primary-color);
+    background: transparent;
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

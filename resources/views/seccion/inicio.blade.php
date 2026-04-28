@@ -16,33 +16,7 @@
         </div>
     </div>
 
-    <!-- Reseñas Recientes -->
-    <h3 class="section-title">Reseñas Recientes</h3>
-    @if($resenasRecientes->count() > 0)
-        <div class="cuadricula cuadricula-3 mb-4">
-            @foreach($resenasRecientes as $resena)
-                <a href="{{ route('contenidos.show', $resena->contenido->slug) }}" class="tarjeta" style="display: flex; flex-direction: column;">
-                    <div class="flex mb-2" style="align-items: center;">
-                        <div class="foto-perfil avatar-mini">
-                            {{ strtoupper(substr($resena->user->name, 0, 1)) }}
-                        </div>
-                        <div style="margin-left: 10px;">
-                            <div class="font-bold text-small">{{ $resena->user->name }}</div>
-                            <div class="text-yellow text-small" style="letter-spacing: 2px;">
-                                {{ str_repeat('⭐', $resena->calificacion) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-small font-bold mb-1" style="color: var(--primary-color);">{{ $resena->contenido->titulo }}</div>
-                    <p class="text-gray text-small" style="font-style: italic; flex: 1;">"{{ Str::limit($resena->comentario, 80) }}"</p>
-                </a>
-            @endforeach
-        </div>
-    @else
-        <p class="text-gray mb-4">Aún no hay reseñas en la plataforma. ¡Anímate a ser el primero!</p>
-    @endif
-
-    <div class="cuadricula cuadricula-3" style="margin-bottom: 5rem;">
+    <div class="cuadricula cuadricula-3" style="margin-bottom: 3rem;">
         <!-- Añadidos Recientes -->
         <div class="home-grid-span-2">
             <h3 class="section-title">Añadidos Recientes</h3>
@@ -76,4 +50,30 @@
             <a href="{{ route('contenidos.random') }}" class="boton boton-primario btn-block" style="display: inline-block;">Sorpréndeme</a>
         </div>
     </div>
+
+    <!-- Reseñas Recientes -->
+    <h3 class="section-title">Reseñas Recientes</h3>
+    @if($resenasRecientes->count() > 0)
+        <div class="cuadricula cuadricula-3" style="margin-bottom: 5rem;">
+            @foreach($resenasRecientes as $resena)
+                <a href="{{ route('contenidos.show', $resena->contenido->slug) }}" class="tarjeta" style="display: flex; flex-direction: column;">
+                    <div class="flex mb-2" style="align-items: center;">
+                        <div class="foto-perfil avatar-mini">
+                            {{ strtoupper(substr($resena->user->name, 0, 1)) }}
+                        </div>
+                        <div style="margin-left: 10px;">
+                            <div class="font-bold text-small">{{ $resena->user->name }}</div>
+                            <div class="text-yellow text-small" style="letter-spacing: 2px;">
+                                {{ str_repeat('⭐', $resena->calificacion) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-small font-bold mb-1" style="color: var(--primary-color);">{{ $resena->contenido->titulo }}</div>
+                    <p class="text-gray text-small" style="font-style: italic; flex: 1;">"{{ Str::limit($resena->comentario, 80) }}"</p>
+                </a>
+            @endforeach
+        </div>
+    @else
+        <p class="text-gray" style="margin-bottom: 5rem;">Aún no hay reseñas en la plataforma. ¡Anímate a ser el primero!</p>
+    @endif
 @endsection

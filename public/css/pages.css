@@ -1,6 +1,6 @@
 /* --- Estilos sueltos para las vistas (Show, Index, Inicio) --- */
 
-/* --- Vista de detalles de la obra (show.blade.php) --- */
+/* --- Vista de detalles de serie/peli (show.blade.php) --- */
 .details-poster {
     background-size: cover;
     height: 400px;
@@ -308,7 +308,7 @@
     flex: 1;
 }
 
-/* Modal Sorpréndeme */
+/* Tarjeta Sorpréndeme */
 .modal-sorprendeme {
     display: none;
     position: fixed;

@@ -84,4 +84,42 @@ class AuthController extends Controller
     {
         return view('auth.profile', ['user' => Auth::user()]);
     }
+
+    // 7. Mostrar formulario para editar perfil
+    public function editProfile()
+    {
+        return view('auth.edit-profile', ['user' => Auth::user()]);
+    }
+
+    // 8. Actualizar perfil
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        // Si el usuario rellenó el campo de contraseña, la actualizamos
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        if ($request->hasFile('avatar')) {
+            // Guardar la imagen en storage/app/public/avatars
+            $rutaImagen = $request->file('avatar')->store('avatars', 'public');
+            // Generar la URL pública
+            $user->avatar = asset('storage/' . $rutaImagen);
+        }
+
+        $user->save();
+
+        return redirect()->route('profile')->with('success', 'Perfil actualizado correctamente.');
+    }
 }

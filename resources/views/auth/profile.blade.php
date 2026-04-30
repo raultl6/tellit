@@ -14,7 +14,7 @@
                         style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
                 </div>
                 <h3>{{ $user->name }}</h3>
-                <a href="#" class="profile-edit-link">Editar Perfil</a> <!-- Link placeholder -->
+                <a href="{{ route('profile.edit') }}" class="profile-edit-link">Editar Perfil</a>
 
                 <div class="profile-actions">
                     <button class="boton boton-primario btn-block mb-2">Mis Listas</button>

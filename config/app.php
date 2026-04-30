@@ -80,7 +80,9 @@ return [
     |
     */
 
-    'locale' => 'en',
+    // Cambiado de 'en' a 'es' para que Laravel lea el archivo lang/es.json
+    // y traduzca automáticamente textos por defecto (como los de la paginación).
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------

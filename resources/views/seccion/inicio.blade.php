@@ -30,7 +30,7 @@
                                     <span class="text-small font-bold texto-truncado-2">{{ $contenido->titulo }}</span>
                                 </div>
                             @else
-                                <div class="imagen-relleno imagen-tarjeta-inicio flex align-center justify-center text-center p-2 tarjeta-añadido-placeholder">
+                                <div class="ph-inicio">
                                     <span class="text-small">{{ $contenido->titulo }}</span>
                                 </div>
                             @endif
@@ -46,7 +46,7 @@
         <div class="caja-aleatoria">
             <div class="random-icon">🎲</div>
             <h3>¿No sabes qué ver?</h3>
-            <p class="text-gray text-small mb-4">Serie o Película, aquí lo encontrarás. Déjalo en nuestras manos.</p>
+            <p class="text-gray text-small mb-4">¡Aquí está la respuesta!</p>
             <a href="{{ route('contenidos.random') }}" id="btn-sorprendeme" class="boton boton-primario btn-block">Sorpréndeme</a>
         </div>
     </div>

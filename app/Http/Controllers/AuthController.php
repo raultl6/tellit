@@ -82,7 +82,9 @@ class AuthController extends Controller
     // 6. Perfil de Usuario
     public function profile()
     {
-        return view('auth.profile', ['user' => Auth::user()]);
+        $user = Auth::user();
+        $resenas = $user->resenas()->with('contenido')->latest()->get();
+        return view('auth.profile', compact('user', 'resenas'));
     }
 
     // 7. Mostrar formulario para editar perfil

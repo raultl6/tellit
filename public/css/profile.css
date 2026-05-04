@@ -4,11 +4,13 @@
     display: flex;
     gap: 40px;
     padding-top: 40px;
+    padding-bottom: 60px; /* Separación respecto al footer */
 }
 
 .profile-sidebar {
     width: 280px;
     flex-shrink: 0;
+    align-self: center; /* Centra la barra verticalmente respecto al contenido de la derecha */
 }
 
 .profile-content-area {
@@ -17,11 +19,9 @@
 
 .caja-lateral-perfil {
     background: white;
-    padding: 30px;
+    padding: 35px 30px; /* Padding ajustado para que quede compacta pero respire */
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    position: sticky;
-    top: 100px;
     text-align: center;
 }
 
@@ -39,7 +39,8 @@
 }
 
 .profile-actions {
-    margin-top: 20px;
+    margin-top: 25px; /* Margen fijo para que se mantenga cerca de la información superior */
+    width: 100%; /* Asegura que los botones ocupen todo el ancho */
     text-align: left;
 }
 
@@ -116,6 +117,28 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    max-height: 340px; /* Aprox. 3 elementos visibles (100px por elemento + gap) */
+    overflow-y: auto;
+    padding-right: 10px; /* Espacio para la barra de scroll */
+}
+
+/* Estilizar la barra de scroll (opcional para un diseño más limpio) */
+.profile-reviews-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.profile-reviews-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.profile-reviews-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.profile-reviews-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
 }
 
 .profile-review-item {

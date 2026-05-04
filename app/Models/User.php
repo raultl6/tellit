@@ -50,5 +50,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Resena::class);
     }
+
+    /**
+     * Relación: Un Usuario crea muchas Listas.
+     */
+    public function listas()
+    {
+        return $this->hasMany(Lista::class);
+    }
 }
 

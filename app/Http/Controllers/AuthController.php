@@ -84,7 +84,8 @@ class AuthController extends Controller
     {
         $user = Auth::user();
         $resenas = $user->resenas()->with('contenido')->latest()->get();
-        return view('auth.profile', compact('user', 'resenas'));
+        $listas = $user->listas()->withCount('contenidos')->latest()->take(4)->get();
+        return view('auth.profile', compact('user', 'resenas', 'listas'));
     }
 
     // 7. Mostrar formulario para editar perfil

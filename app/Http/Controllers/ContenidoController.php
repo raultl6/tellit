@@ -34,7 +34,13 @@ class ContenidoController extends Controller
     public function show($slug)
     {
         $contenido = Contenido::where('slug', $slug)->firstOrFail();
-        return view('contenidos.show', compact('contenido'));
+        
+        $listasUsuario = [];
+        if (\Illuminate\Support\Facades\Auth::check()) {
+            $listasUsuario = \Illuminate\Support\Facades\Auth::user()->listas()->get();
+        }
+
+        return view('contenidos.show', compact('contenido', 'listasUsuario'));
     }
 
     public function home()

@@ -11,9 +11,39 @@
                 @endif
             </div>
 
-            <button class="boton boton-primario btn-block details-btn">
-                {{ $contenido->tipo == 'serie' ? 'Ver Capítulos' : 'Ver Película' }}
-            </button>
+
+
+            @auth
+                @if($listasUsuario->count() > 0)
+                    <div class="mt-3 tarjeta p-3" style="background: #f9fafb; border: 1px solid #eee;">
+                        <h4 style="font-size: 0.9rem; margin: 0 0 10px 0;">Añadir a lista:</h4>
+                        <form action="" method="POST" id="form-add-lista" onsubmit="if(!document.getElementById('lista_selector').value) { alert('Selecciona una lista primero'); return false; }">
+                            @csrf
+                            <input type="hidden" name="contenido_id" value="{{ $contenido->id }}">
+                            <div style="display: flex; gap: 10px;">
+                                <select id="lista_selector" class="form-input" style="padding: 8px; font-size: 0.9rem; flex-grow: 1; margin: 0;" onchange="document.getElementById('form-add-lista').action = '{{ url('listas') }}/' + this.value + '/toggle-contenido'">
+                                    <option value="">Selecciona...</option>
+                                    @foreach($listasUsuario as $lista)
+                                        <option value="{{ $lista->id }}" {{ $lista->contenidos->contains($contenido->id) ? 'disabled' : '' }}>
+                                            {{ $lista->nombre }} {{ $lista->contenidos->contains($contenido->id) ? '✓' : '' }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="boton boton-primario" style="padding: 8px 16px; font-size: 0.9rem;">Añadir</button>
+                            </div>
+                        </form>
+                        @if(session('lista_success'))
+                            <div style="margin-top: 10px; color: #15803d; font-size: 0.85rem; text-align: center; background: #dcfce7; padding: 5px; border-radius: 4px;">
+                                {{ session('lista_success') }}
+                            </div>
+                        @endif
+                    </div>
+                @else
+                    <div class="mt-3 text-center" style="font-size: 0.9rem;">
+                        <a href="{{ route('listas.create') }}" style="color: #6b7280; text-decoration: underline;">Crear mi primera lista</a>
+                    </div>
+                @endif
+            @endauth
         </div>
 
         <div class="detalles-der">

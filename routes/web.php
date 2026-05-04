@@ -56,6 +56,10 @@ Route::resource('resenas', App\Http\Controllers\ResenaController::class)->except
     'destroy'
 ]);
 
+// Rutas de Listas
+Route::resource('listas', App\Http\Controllers\ListaController::class)->middleware('auth');
+Route::post('/listas/{lista}/toggle-contenido', [App\Http\Controllers\ListaController::class, 'toggleContenido'])->name('listas.toggle')->middleware('auth');
+
 // Rutas de Admin
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');

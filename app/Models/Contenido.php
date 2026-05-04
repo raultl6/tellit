@@ -34,4 +34,11 @@ class Contenido extends Model
     {
         return $this->hasMany(Resena::class);
     }
+
+    // Relación: Una peli puede estar en muchas listas
+    public function listas()
+    {
+        return $this->belongsToMany(Lista::class, 'contenido_lista')
+                    ->withTimestamps();
+    }
 }

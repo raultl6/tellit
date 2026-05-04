@@ -33,19 +33,21 @@
                 <div class="profile-section-header">
                     <h3>Tus Listas</h3>
                     <div>
-                        <a href="#" style="text-decoration: none; color: #6b7280; margin-right: 15px; font-size: 0.9rem;">Ver todas...</a>
-                        <a href="#" class="create-list-btn">+ Crear</a>
+                        <a href="{{ route('listas.index') }}" style="text-decoration: none; color: #6b7280; margin-right: 15px; font-size: 0.9rem;">Ver todas...</a>
+                        <a href="{{ route('listas.create') }}" class="create-list-btn">+ Crear</a>
                     </div>
                 </div>
                 <div class="cuadricula cuadricula-2">
-                    <a href="#" class="tarjeta list-card-terror">
-                        <h4>Terror Favoritas</h4>
-                        <p>5 elementos</p>
-                    </a>
-                    <a href="#" class="tarjeta list-card-favs">
-                        <h4>Favoritas</h4>
-                        <p>10 elementos</p>
-                    </a>
+                    @forelse($listas as $lista)
+                        <a href="{{ route('listas.show', $lista) }}" class="tarjeta {{ $loop->index % 2 == 0 ? 'list-card-terror' : 'list-card-favs' }}" style="text-decoration: none; display: block;">
+                            <h4 style="margin: 0;">{{ $lista->nombre }}</h4>
+                            <p style="margin: 5px 0 0;">{{ $lista->contenidos_count }} elementos</p>
+                        </a>
+                    @empty
+                        <div class="tarjeta text-center" style="grid-column: span 2; background: #f9fafb;">
+                            <p class="text-gray m-0">Aún no tienes listas. ¡Crea una para organizar tu contenido!</p>
+                        </div>
+                    @endforelse
                 </div>
             </div>
 

@@ -55,17 +55,26 @@
                             </td>
                             <td>
                                 @if($usuario->id !== auth()->id())
-                                    <form action="{{ route('admin.users.ban', $usuario->id) }}" method="POST" onsubmit="return confirm('¿Confirmar acción sobre este usuario?');">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="action-link-delete" style="background: none; border: none; cursor: pointer; padding: 0;">
-                                            @if($usuario->is_banned)
-                                                <span class="text-gray">[Desbanear]</span>
-                                            @else
-                                                [Banear]
-                                            @endif
-                                        </button>
-                                    </form>
+                                    <div style="display: flex; gap: 10px; justify-content: flex-start;">
+                                        <form action="{{ route('admin.users.ban', $usuario->id) }}" method="POST" onsubmit="return confirm('¿Confirmar acción sobre este usuario?');" style="margin: 0;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="action-link-delete" style="background: none; border: none; cursor: pointer; padding: 0;">
+                                                @if($usuario->is_banned)
+                                                    <span class="text-gray">[Desbanear]</span>
+                                                @else
+                                                    [Banear]
+                                                @endif
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('admin.users.destroy', $usuario->id) }}" method="POST" onsubmit="return confirm('ATENCIÓN: ¿Estás seguro de que quieres eliminar a este usuario permanentemente? Esta acción no se puede deshacer e implicará borrar todo su contenido asociado (reseñas, listas, etc).');" style="margin: 0;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="action-link-delete" style="background: none; border: none; cursor: pointer; padding: 0; color: #dc2626;">
+                                                [Eliminar]
+                                            </button>
+                                        </form>
+                                    </div>
                                 @else
                                     <span class="text-gray" style="font-size: 0.8rem;">(Tú)</span>
                                 @endif

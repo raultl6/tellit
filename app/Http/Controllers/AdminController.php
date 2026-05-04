@@ -197,6 +197,20 @@ class AdminController extends Controller
         return redirect()->route('admin.users')->with('success', "El usuario {$usuario->name} ha sido {$estado}.");
     }
 
+    public function destroyUser($id)
+    {
+        $usuario = User::findOrFail($id);
+        
+        // Evitar que el admin se borre a sí mismo
+        if ($usuario->id === auth()->id()) {
+            return redirect()->route('admin.users')->with('error', 'No puedes eliminar tu propia cuenta de administrador.');
+        }
+
+        $usuario->delete();
+
+        return redirect()->route('admin.users')->with('success', 'Usuario eliminado correctamente.');
+    }
+
     public function destroyReview($id)
     {
         $resena = Resena::findOrFail($id);

@@ -65,6 +65,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::get('/usuarios', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
     Route::put('/usuarios/{id}/ban', [App\Http\Controllers\AdminController::class, 'toggleBan'])->name('admin.users.ban');
+    Route::delete('/usuarios/{id}', [App\Http\Controllers\AdminController::class, 'destroyUser'])->name('admin.users.destroy');
     Route::get('/resenas', [App\Http\Controllers\AdminController::class, 'reviews'])->name('admin.reviews');
     Route::delete('/resenas/{id}', [App\Http\Controllers\AdminController::class, 'destroyReview'])->name('admin.reviews.destroy');
     Route::get('/reportes', [App\Http\Controllers\AdminController::class, 'reports'])->name('admin.reports');

@@ -26,6 +26,21 @@ Route::get('/explorar', [ContenidoController::class, 'index'])->name('contenidos
 // La parte {slug} es el comodín, como el nombre facil (ej: inception, breaking-bad)
 Route::get('/ver/{slug}', [ContenidoController::class, 'show'])->name('contenidos.show');
 
+// Rutas de Páginas Estáticas
+Route::view('/contacto', 'contactos.index')->name('contacto');
+Route::post('/contacto', function (\Illuminate\Http\Request $request) {
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'asunto' => 'required|string|max:255',
+        'mensaje' => 'required|string',
+    ]);
+
+    \App\Models\MensajeContacto::create($request->all());
+
+    return back()->with('success', '¡Gracias por contactarnos! Tu mensaje ha sido recibido y te responderemos a la brevedad.');
+})->name('contacto.enviar');
+
 
 
 // Rutas de Registro
@@ -68,8 +83,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::delete('/usuarios/{id}', [App\Http\Controllers\AdminController::class, 'destroyUser'])->name('admin.users.destroy');
     Route::get('/resenas', [App\Http\Controllers\AdminController::class, 'reviews'])->name('admin.reviews');
     Route::delete('/resenas/{id}', [App\Http\Controllers\AdminController::class, 'destroyReview'])->name('admin.reviews.destroy');
-    Route::get('/reportes', [App\Http\Controllers\AdminController::class, 'reports'])->name('admin.reports');
-    Route::put('/reportes/{id}/resolver', [App\Http\Controllers\AdminController::class, 'resolveReport'])->name('admin.reports.resolve');
+    Route::get('/contactos', [App\Http\Controllers\AdminController::class, 'contactos'])->name('admin.contactos');
+    Route::delete('/contactos/{id}', [App\Http\Controllers\AdminController::class, 'destroyContacto'])->name('admin.contactos.destroy');
 
     // TMDB y Contenidos
     Route::get('/contenidos/nuevo', [App\Http\Controllers\AdminController::class, 'createContenido'])->name('admin.contenidos.create');

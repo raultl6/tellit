@@ -14,7 +14,7 @@
             <a href="{{ route('admin.index') }}" class="boton boton-nav-admin">Títulos</a>
             <a href="{{ route('admin.users') }}" class="boton boton-nav-admin">Usuarios</a>
             <a href="{{ route('admin.reviews') }}" class="boton boton-nav-admin active">Reseñas</a>
-            <a href="{{ route('admin.reports') }}" class="boton boton-nav-admin">Reportes ⚠️</a>
+            <a href="{{ route('admin.contactos') }}" class="boton boton-nav-admin">Contacto ✉️</a>
         </div>
 
         @if(session('success'))

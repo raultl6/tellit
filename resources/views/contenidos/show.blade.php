@@ -15,7 +15,7 @@
 
             @auth
                 @if($listasUsuario->count() > 0)
-                    <div class="mt-3 tarjeta p-3" style="background: #f9fafb; border: 1px solid #eee;">
+                    <div class="tarjeta p-3" style="background: #f9fafb; border: 1px solid #eee; margin-top: 20px;">
                         <h4 style="font-size: 0.9rem; margin: 0 0 10px 0;">Añadir a lista:</h4>
                         <form action="" method="POST" id="form-add-lista" onsubmit="if(!document.getElementById('lista_selector').value) { alert('Selecciona una lista primero'); return false; }">
                             @csrf
@@ -39,7 +39,7 @@
                         @endif
                     </div>
                 @else
-                    <div class="mt-3 text-center" style="font-size: 0.9rem;">
+                    <div class="text-center" style="font-size: 0.9rem; margin-top: 20px;">
                         <a href="{{ route('listas.create') }}" style="color: #6b7280; text-decoration: underline;">Crear mi primera lista</a>
                     </div>
                 @endif

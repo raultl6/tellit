@@ -9,7 +9,7 @@ use App\Models\Contenido;
 use App\Models\Categoria;
 use App\Models\User;
 use App\Models\Resena;
-use App\Models\Reporte;
+use App\Models\MensajeContacto;
 
 class AdminController extends Controller
 {
@@ -31,10 +31,10 @@ class AdminController extends Controller
         return view('admin.reviews', compact('resenas'));
     }
 
-    public function reports()
+    public function contactos()
     {
-        $reportes = Reporte::with(['user', 'reportable'])->where('estado', 'pendiente')->orderBy('created_at', 'asc')->paginate(10);
-        return view('admin.reports', compact('reportes'));
+        $contactos = MensajeContacto::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.contactos', compact('contactos'));
     }
 
     // --- INTEGRACIÓN TMDB ---
@@ -108,7 +108,7 @@ class AdminController extends Controller
             return redirect()->route('admin.index')->with('error', 'El título ya existe en la base de datos.');
         }
 
-        // Obtener / Crear Categoría (Tomamos el primer género)
+        // Obtener / Crear Categoría (Se coge el primer género)
         $categoriaId = null;
         if (!empty($data['genres'])) {
             $primerGenero = $data['genres'][0]['name'];
@@ -219,24 +219,11 @@ class AdminController extends Controller
         return redirect()->route('admin.reviews')->with('success', 'Reseña eliminada correctamente.');
     }
 
-    public function resolveReport(Request $request, $id)
+    public function destroyContacto($id)
     {
-        $reporte = Reporte::findOrFail($id);
-        $accion = $request->input('accion'); // 'ignorar' o 'borrar'
+        $contacto = MensajeContacto::findOrFail($id);
+        $contacto->delete();
 
-        if ($accion === 'borrar') {
-            // Borrar el recurso asociado
-            if ($reporte->reportable) {
-                $reporte->reportable->delete();
-            }
-            $mensaje = 'Recurso borrado y reporte resuelto.';
-        } else {
-            $mensaje = 'Reporte marcado como resuelto (ignorado).';
-        }
-
-        $reporte->estado = 'revisado'; // Update 'estado' enum: 'pendiente', 'revisado'
-        $reporte->save();
-
-        return redirect()->route('admin.reports')->with('success', $mensaje);
+        return redirect()->route('admin.contactos')->with('success', 'Mensaje eliminado correctamente.');
     }
 }

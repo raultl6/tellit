@@ -30,8 +30,8 @@
                 style="background: none; color: white; border: 1px solid transparent;">Usuarios</a>
             <a href="{{ route('admin.reviews') }}" class="boton"
                 style="background: none; color: white; border: 1px solid transparent;">Reseñas</a>
-            <a href="{{ route('admin.reports') }}" class="boton"
-                style="background: none; color: white; border: 1px solid transparent;">Reportes ⚠️</a>
+            <a href="{{ route('admin.contactos') }}" class="boton"
+                style="background: none; color: white; border: 1px solid transparent;">Contacto ✉️</a>
         </div>
 
         <div class="tarjeta">

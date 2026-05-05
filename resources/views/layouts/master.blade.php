@@ -78,7 +78,7 @@
             </div>
             <div>
                 <h4 class="footer-title">Enlaces</h4>
-                <a href="#" class="footer-link">Contacto</a>
+                <a href="{{ route('contacto') }}" class="footer-link">Contacto</a>
                 <a href="#" class="footer-link">Sobre Nosotros</a>                
             </div>
             <div>
@@ -91,11 +91,11 @@
     <script>
         function toggleMenu() { document.getElementById('menuDesplegableGlobal').classList.toggle('show'); }
         document.addEventListener('click', function (e) {
-            // Close main menu
+            // Cerrar menu principal
             if (!document.getElementById('menuDesplegableGlobal').contains(e.target) && !document.querySelector('.menu-btn').contains(e.target)) {
                 document.getElementById('menuDesplegableGlobal').classList.remove('show');
             }
-            // Close user dropdown
+            // Cerrar menu de usuario
             const userDropdown = document.getElementById('menuUsuario');
             const userHeader = document.querySelector('.cabecera-usuario');
             if (userDropdown && userHeader && !userDropdown.contains(e.target) && !userHeader.contains(e.target)) {

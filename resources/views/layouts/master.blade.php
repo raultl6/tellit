@@ -75,15 +75,31 @@
             <div>
                 <h3 class="footer-title">TELLIT</h3>
                 <p class="footer-copyright">© 2026. Todos los derechos reservados.</p>
+                <p style="color: #9ca3af; font-size: 0.8rem; margin-top: 10px;">
+                    Datos proporcionados por <a href="https://www.themoviedb.org/" target="_blank" style="color: #38bdf8; text-decoration: none;">TMDB</a>.
+                </p>
             </div>
             <div>
                 <h4 class="footer-title">Enlaces</h4>
                 <a href="{{ route('contacto') }}" class="footer-link">Contacto</a>
-                <a href="#" class="footer-link">Sobre Nosotros</a>                
+                <a href="{{ route('contenidos.index') }}" class="footer-link">Explorar Catálogo</a>
             </div>
             <div>
                 <h4 class="footer-title">Social</h4>
-                <p class="footer-social-text">Tw | Ig | Fb</p>
+                <div style="display: flex; gap: 15px; margin-top: 10px;">
+                    <!-- Twitter -->
+                    <a href="#" style="transition: opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                        <img src="{{ asset('img/twitter.png') }}" alt="Twitter" width="24" height="24">
+                    </a>
+                    <!-- Instagram -->
+                    <a href="#" style="transition: opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                        <img src="{{ asset('img/instagram.png') }}" alt="Instagram" width="24" height="24">
+                    </a>
+                    <!-- GitHub -->
+                    <a href="https://github.com/raultl6/tellit" target="_blank" style="transition: opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                        <img src="{{ asset('img/github.png') }}" alt="GitHub" width="24" height="24">
+                    </a>
+                </div>
             </div>
         </div>
     </footer>

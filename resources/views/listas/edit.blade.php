@@ -31,7 +31,7 @@
                 <textarea id="descripcion" name="descripcion" class="form-input" rows="4">{{ old('descripcion', $lista->descripcion) }}</textarea>
             </div>
 
-            <div class="flex justify-between items-center mt-4 pt-4" style="border-top: 1px solid #eee;">
+            <div class="flex justify-between items-center" style="border-top: 1px solid #eee; padding-top: 25px; margin-top: 25px;">
                 <a href="{{ route('listas.show', $lista) }}" class="text-gray" style="text-decoration: none;">Cancelar</a>
                 <button type="submit" class="boton boton-primario">Guardar Cambios</button>
             </div>

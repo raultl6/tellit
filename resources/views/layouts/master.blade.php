@@ -21,10 +21,8 @@
             <div id="menuDesplegableGlobal" class="menu-desplegable">
                 <a href="{{ url('/') }}" class="menu-item">🏠 Inicio</a>
                 <a href="{{ route('contenidos.index') }}" class="menu-item">🔍 Explorar</a>
-                <a href="#" class="menu-item">📑 Mis Listas</a>
-
-                <!-- Login/Registro removed from here as requested -->
-
+                <a href="{{ route('listas.index') }}" class="menu-item">📑 Mis Listas</a>
+                
                 <div class="dropdown-divider"></div>
                 @if(Auth::check() && Auth::user()->role == 'admin')
                     <a href="{{ route('admin.index') }}" class="menu-item admin-link">⚙️ Admin</a>

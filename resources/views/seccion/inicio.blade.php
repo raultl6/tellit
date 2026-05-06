@@ -59,12 +59,12 @@
                 <a href="{{ route('contenidos.show', $resena->contenido->slug) }}" class="tarjeta tarjeta-reseña">
                     <div class="flex mb-2 align-center">
                         <div class="foto-perfil avatar-mini">
-                            {{ strtoupper(substr($resena->user->name, 0, 1)) }}
+                            <img src="{{ $resena->user->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($resena->user->name) . '&background=6366f1&color=fff' }}" alt="{{ $resena->user->name }}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
                         </div>
                         <div class="reseña-usuario-info">
                             <div class="font-bold text-small">{{ $resena->user->name }}</div>
                             <div class="text-yellow text-small reseña-estrellas">
-                                {{ str_repeat('⭐', $resena->calificacion) }}
+                                {{ str_repeat('⭐', $resena->puntuacion) }}
                             </div>
                         </div>
                     </div>

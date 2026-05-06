@@ -1,7 +1,7 @@
-/* --- Estilos sueltos para las vistas (Show, Index, Inicio) --- */
+/* --- Estilos para las vistas de contenido (Show, Index, Inicio) --- */
 
-/* --- Vista de detalles de serie/peli (show.blade.php) --- */
-.details-poster {
+/* --- Vista de detalles de contenido (show.blade.php) --- */
+.poster-detalles {
     background-size: cover;
     height: 400px;
     background-position: center;
@@ -9,7 +9,7 @@
     background-color: #333;
 }
 
-.details-poster-placeholder {
+.poster-detalles-placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,22 +17,18 @@
     color: white;
 }
 
-.details-btn {
-    margin-top: 15px;
-}
-
-.details-title {
+.titulo-detalles {
     font-size: 2.5rem;
     margin-bottom: 5px;
 }
 
-.meta-tags {
+.etiquetas-meta {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
 }
 
-.tag {
+.etiqueta {
     background: #e5e7eb;
     padding: 4px 10px;
     border-radius: 20px;
@@ -40,96 +36,123 @@
     font-weight: 500;
 }
 
-.tag-rating {
+.etiqueta-puntuacion {
     background: #fbbf24;
     color: #000;
 }
 
-.details-description {
+.descripcion-detalles {
     margin-top: 20px;
     line-height: 1.6;
 }
 
-.details-grid {
+.cuadricula-detalles {
     margin-top: 30px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-.details-subtitle {
+.subtitulo-detalles {
     color: #666;
     margin-bottom: 5px;
 }
 
-.reviews-section {
+/* --- Sección de reseñas en la vista de detalles --- */
+.seccion-resenas {
     margin-top: 50px;
     border-top: 1px solid #eee;
     padding-top: 30px;
 }
 
-.reviews-list {
+.lista-resenas {
     margin-bottom: 30px;
 }
 
-.review-card {
+.tarjeta-resena-detalle {
     background: #f9f9f9;
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 15px;
 }
 
-.review-header {
+.cabecera-resena {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 5px;
 }
 
-.review-rating {
+.puntuacion-resena {
     color: #fbbf24;
 }
 
-.review-form-card {
+.tarjeta-formulario-resena {
     background: #f8f8f8;
 }
 
-.review-form-title {
+.titulo-formulario-resena {
     margin-bottom: 10px;
 }
 
-.review-stars {
-    margin-bottom: 10px;
-}
-
-.star-active {
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #fbbf24;
-}
-
-.star-inactive {
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #ddd;
-}
-
-.review-submit-container {
+.contenedor-envio-resena {
     text-align: right;
     margin-top: 10px;
 }
 
+/* Estrellas interactivas (crear/editar reseñas) */
+.estrella-interactiva {
+    cursor: pointer;
+    font-size: 2rem;
+    transition: color 0.2s ease-in-out;
+    color: #ddd;
+}
+
+/* Botones de acción en reseñas (editar/borrar) */
+.boton-accion {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-gray);
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.boton-accion:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+    color: var(--text-dark);
+    transform: translateY(-1px);
+}
+
+.boton-accion-borrar {
+    color: #dc2626;
+    border-color: #fca5a5;
+}
+
+.acciones-resena {
+    display: flex;
+    gap: 8px;
+}
+
 /* --- Vista del catálogo general (index.blade.php) --- */
-.filter-title {
+.filtro-titulo {
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
     margin-bottom: 15px;
 }
 
-.filter-group {
+.filtro-grupo {
     margin-bottom: 15px;
 }
 
-.filter-label {
+.filtro-etiqueta {
     display: block;
     font-size: 0.9rem;
     margin-bottom: 5px;
@@ -140,7 +163,7 @@
     background-position: center;
 }
 
-.content-card-meta {
+.meta-tarjeta-contenido {
     font-size: 0.8rem;
     color: #666;
     display: flex;
@@ -148,7 +171,7 @@
     margin-top: 5px;
 }
 
-.card-rating {
+.puntuacion-tarjeta {
     color: #fbbf24;
 }
 
@@ -164,37 +187,23 @@
     grid-column: span 2;
 }
 
-
-
-.random-icon {
+.icono-aleatorio {
     font-size: 3rem;
     margin-bottom: 10px;
 }
 
-.portada-destacada {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 4rem 2rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-}
-
+/* Estilos del buscador de la portada */
 .portada-titulo {
     font-size: 3.5rem;
     margin-bottom: 0.5rem;
     font-weight: 800;
     letter-spacing: -1px;
-    color: var(--primary-color);
+    color: var(--primary);
 }
 
 .portada-subtitulo {
     font-size: 1.2rem;
-    color: var(--text-color);
+    color: var(--text-dark);
     opacity: 0.8;
     margin-bottom: 0;
 }
@@ -226,21 +235,22 @@
     border-radius: 0 8px 8px 0;
     padding: 0 1.5rem;
     margin: 0;
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--primary);
 }
 
-.seccion-añadidos {
+.seccion-recientes {
     margin-bottom: 3rem;
 }
 
-.tarjeta-añadido {
+/* Tarjetas de contenido añadido recientemente */
+.tarjeta-contenido-reciente {
     padding: 0 !important;
     overflow: hidden;
     display: flex;
     flex-direction: column;
 }
 
-.tarjeta-añadido-img {
+.tarjeta-contenido-reciente-img {
     width: 100%;
     height: 250px;
     object-fit: cover;
@@ -248,7 +258,7 @@
     border-radius: 8px 8px 0 0;
 }
 
-.tarjeta-añadido-info {
+.tarjeta-contenido-reciente-info {
     padding: 10px;
     text-align: center;
 }
@@ -260,7 +270,7 @@
     overflow: hidden;
 }
 
-.ph-inicio {
+.placeholder-inicio {
     background-color: #eee;
     height: 250px;
     border-radius: 8px 8px 0 0;
@@ -274,41 +284,108 @@
     font-size: 1.2rem;
 }
 
-.caja-aleatoria {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.seccion-reseñas {
+/* Reseñas recientes en la portada */
+.seccion-resenas-inicio {
     margin-bottom: 5rem;
 }
 
-.tarjeta-reseña {
+.tarjeta-resena {
     display: flex;
     flex-direction: column;
 }
 
-.reseña-usuario-info {
+.resena-usuario-info {
     margin-left: 10px;
 }
 
-.reseña-estrellas {
+.resena-estrellas {
     letter-spacing: 2px;
 }
 
-.reseña-titulo-obra {
-    color: var(--primary-color);
+.resena-titulo-obra {
+    color: var(--primary);
 }
 
-.reseña-comentario {
+.resena-comentario {
     font-style: italic;
     flex: 1;
 }
 
-/* Tarjeta Sorpréndeme */
+/* --- Caja de "Añadir a lista" en detalles --- */
+.caja-add-lista {
+    background: #f9fafb;
+    border: 1px solid #eee;
+    margin-top: 20px;
+}
+
+.caja-add-lista h4 {
+    font-size: 0.9rem;
+    margin: 0 0 10px 0;
+}
+
+.selector-flex {
+    display: flex;
+    gap: 10px;
+}
+
+.selector-lista {
+    padding: 8px;
+    font-size: 0.9rem;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.mensaje-lista-exito {
+    margin-top: 10px;
+    color: #15803d;
+    font-size: 0.85rem;
+    text-align: center;
+    background: #dcfce7;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.enlace-crear-lista {
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+.enlace-crear-lista a {
+    color: #6b7280;
+    text-decoration: underline;
+}
+
+/* Texto del comentario en la reseña */
+.texto-resena-detalle {
+    margin-top: 10px;
+}
+
+/* --- Listas: tarjetas de contenido --- */
+.poster-lista {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: 15px;
+}
+
+.poster-lista-placeholder {
+    width: 100%;
+    height: 350px;
+    background: #eee;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.titulo-lista-item {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* --- Modal Sorpréndeme --- */
 .modal-sorprendeme {
     display: none;
     position: fixed;
@@ -321,10 +398,12 @@
     align-items: center;
     justify-content: center;
 }
+
 .modal-sorprendeme.show {
     display: flex;
     animation: fadeIn 0.3s ease-in-out;
 }
+
 .modal-sorprendeme-content {
     background-color: var(--bg-card, #fff);
     padding: 0;
@@ -336,6 +415,7 @@
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     overflow: hidden;
 }
+
 .modal-sorprendeme-close {
     position: absolute;
     top: 15px;
@@ -352,34 +432,41 @@
     align-items: center;
     justify-content: center;
 }
+
 .modal-sorprendeme-close:hover {
-    background: var(--primary-color, #e50914);
+    background: var(--primary, #e50914);
 }
+
 .modal-sorprendeme-body {
     display: flex;
     flex-direction: column;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
 }
+
 .modal-sorprendeme-body.cargado {
     opacity: 1;
 }
+
 @media (min-width: 600px) {
     .modal-sorprendeme-body {
         flex-direction: row;
     }
 }
+
 .modal-sorprendeme-img-container {
     flex: 0 0 40%;
     background-color: var(--bg-dark, #111);
     min-height: 300px;
 }
+
 .modal-sorprendeme-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
+
 .modal-sorprendeme-info {
     flex: 1;
     padding: 2rem;
@@ -387,32 +474,36 @@
     flex-direction: column;
     justify-content: center;
 }
+
 .modal-sorprendeme-title {
     font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
-    color: var(--primary-color, #e50914);
+    color: var(--primary, #e50914);
     line-height: 1.2;
 }
+
 .modal-sorprendeme-desc {
     font-size: 1rem;
     color: var(--text-gray, #ccc);
     margin-bottom: 2rem;
     line-height: 1.5;
 }
+
 .modal-sorprendeme-buttons {
     display: flex;
     gap: 1rem;
 }
 
 .modal-btn-otra-vez {
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--primary);
     background: transparent;
-    color: var(--text-color);
+    color: var(--text-dark);
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
 }
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }

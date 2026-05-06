@@ -5,16 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ContenidoController;
 use App\Http\Controllers\AuthController;
-use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Rutas Web
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| Aquí se registran las rutas web de la aplicación. Estas rutas son
+| cargadas por el RouteServiceProvider dentro del grupo de middleware "web".
 |
 */
 
@@ -23,7 +21,7 @@ Route::get('/aleatorio', [ContenidoController::class, 'random'])->name('contenid
 
 Route::get('/explorar', [ContenidoController::class, 'index'])->name('contenidos.index');
 
-// La parte {slug} es el comodín, como el nombre facil (ej: inception, breaking-bad)
+// La parte {slug} es el comodín, como el nombre fácil (ej: inception, breaking-bad)
 Route::get('/ver/{slug}', [ContenidoController::class, 'show'])->name('contenidos.show');
 
 // Rutas de Páginas Estáticas
@@ -44,8 +42,8 @@ Route::post('/contacto', function (\Illuminate\Http\Request $request) {
 
 
 // Rutas de Registro
-Route::get('/registro', [AuthController::class, 'showRegister'])->name('register'); // Ver formulario
-Route::post('/registro', [AuthController::class, 'register'])->name('register.post'); // Enviar datos
+Route::get('/registro', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/registro', [AuthController::class, 'register'])->name('register.post');
 
 // Rutas de Login
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -57,25 +55,17 @@ Route::put('/perfil/editar', [AuthController::class, 'updateProfile'])->name('pr
 
 // Rutas de Reseñas
 Route::resource('resenas', App\Http\Controllers\ResenaController::class)->only([
-    'create',
     'store',
     'edit',
     'update',
     'destroy'
 ])->middleware('auth');
-Route::resource('resenas', App\Http\Controllers\ResenaController::class)->except([
-    'create',
-    'store',
-    'edit',
-    'update',
-    'destroy'
-]);
 
 // Rutas de Listas
 Route::resource('listas', App\Http\Controllers\ListaController::class)->middleware('auth');
 Route::post('/listas/{lista}/toggle-contenido', [App\Http\Controllers\ListaController::class, 'toggleContenido'])->name('listas.toggle')->middleware('auth');
 
-// Rutas de Admin
+// Rutas de Administración
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::get('/usuarios', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
@@ -92,5 +82,3 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::post('/contenidos/store-tmdb', [App\Http\Controllers\AdminController::class, 'storeTmdb'])->name('admin.contenidos.storeTmdb');
     Route::delete('/contenidos/{id}', [App\Http\Controllers\AdminController::class, 'destroyContenido'])->name('admin.contenidos.destroy');
 });
-
-

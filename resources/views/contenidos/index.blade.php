@@ -3,19 +3,19 @@
 @section('titulo', 'Explorar')
 
 @section('contenido')
-    <div class="sidebar-layout" style="margin-top: 2rem; margin-bottom: 5rem;">
+    <div class="disposicion-lateral seccion-pagina">
 
         <aside class="barra-lateral">
             <form action="{{ route('contenidos.index') }}" method="GET" class="caja-lateral">
-                <h3 class="filter-title">Filtros</h3>
+                <h3 class="filtro-titulo">Filtros</h3>
 
-                <div class="filter-group">
-                    <label class="filter-label">Buscar</label>
+                <div class="filtro-grupo">
+                    <label class="filtro-etiqueta">Buscar</label>
                     <input type="text" name="query" value="{{ request('query') }}" placeholder="Título..." class="form-input">
                 </div>
 
-                <div class="filter-group">
-                    <label class="filter-label">Género</label>
+                <div class="filtro-grupo">
+                    <label class="filtro-etiqueta">Género</label>
                     <select name="categoria" class="form-select">
                         <option value="">Todos</option>
                         @foreach($categorias as $categoria)
@@ -28,8 +28,8 @@
             </form>
         </aside>
 
-        <div class="content-area">
-            <h3 class="section-title">Explorar</h3>
+        <div class="area-contenido">
+            <h3 class="titulo-seccion">Explorar</h3>
 
             <div class="cuadricula cuadricula-4">
                 @foreach($contenidos as $contenido)
@@ -42,9 +42,9 @@
 
                         <h4>{{ $contenido->titulo }}</h4>
 
-                        <div class="content-card-meta">
+                        <div class="meta-tarjeta-contenido">
                             <span>{{ $contenido->año }}</span>
-                            <span class="card-rating">★ {{ $contenido->puntuacion }}</span>
+                            <span class="puntuacion-tarjeta">★ {{ $contenido->puntuacion }}</span>
                         </div>
                     </a>
                 @endforeach

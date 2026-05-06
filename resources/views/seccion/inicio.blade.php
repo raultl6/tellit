@@ -3,7 +3,7 @@
 @section('titulo', 'Inicio')
 
 @section('contenido')
-    <!-- Hero / Portada Destacada -->
+    <!-- Portada Destacada -->
     <div class="portada-destacada">
         <div style="position: relative; z-index: 1;">
             <h2 class="portada-titulo">Bienvenido a TELLIT</h2>
@@ -16,21 +16,21 @@
         </div>
     </div>
 
-    <div class="cuadricula cuadricula-3 seccion-añadidos">
+    <div class="cuadricula cuadricula-3 seccion-recientes">
         <!-- Añadidos Recientes -->
         <div class="home-grid-span-2">
-            <h3 class="section-title">Añadidos Recientes</h3>
+            <h3 class="titulo-seccion">Añadidos Recientes</h3>
             @if($ultimosContenidos->count() > 0)
                 <div class="cuadricula cuadricula-4">
                     @foreach($ultimosContenidos as $contenido)
-                        <a href="{{ route('contenidos.show', $contenido->slug) }}" class="tarjeta tarjeta-añadido" title="{{ $contenido->titulo }}">
+                        <a href="{{ route('contenidos.show', $contenido->slug) }}" class="tarjeta tarjeta-contenido-reciente" title="{{ $contenido->titulo }}">
                             @if($contenido->imagen_url)
-                                <img src="{{ $contenido->imagen_url }}" alt="{{ $contenido->titulo }}" class="tarjeta-añadido-img">
-                                <div class="tarjeta-añadido-info">
+                                <img src="{{ $contenido->imagen_url }}" alt="{{ $contenido->titulo }}" class="tarjeta-contenido-reciente-img">
+                                <div class="tarjeta-contenido-reciente-info">
                                     <span class="text-small font-bold texto-truncado-2">{{ $contenido->titulo }}</span>
                                 </div>
                             @else
-                                <div class="ph-inicio">
+                                <div class="placeholder-inicio">
                                     <span class="text-small">{{ $contenido->titulo }}</span>
                                 </div>
                             @endif
@@ -44,7 +44,7 @@
 
         <!-- Caja Aleatoria -->
         <div class="caja-aleatoria">
-            <div class="random-icon">🎲</div>
+            <div class="icono-aleatorio">🎲</div>
             <h3>¿No sabes qué ver?</h3>
             <p class="text-gray text-small mb-4">¡Aquí está la respuesta!</p>
             <a href="{{ route('contenidos.random') }}" id="btn-sorprendeme" class="boton boton-primario btn-block">Sorpréndeme</a>
@@ -52,32 +52,32 @@
     </div>
 
     <!-- Reseñas Recientes -->
-    <h3 class="section-title">Reseñas Recientes</h3>
+    <h3 class="titulo-seccion">Reseñas Recientes</h3>
     @if($resenasRecientes->count() > 0)
-        <div class="cuadricula cuadricula-3 seccion-reseñas">
+        <div class="cuadricula cuadricula-3 seccion-resenas-inicio">
             @foreach($resenasRecientes as $resena)
-                <a href="{{ route('contenidos.show', $resena->contenido->slug) }}" class="tarjeta tarjeta-reseña">
+                <a href="{{ route('contenidos.show', $resena->contenido->slug) }}" class="tarjeta tarjeta-resena">
                     <div class="flex mb-2 align-center">
                         <div class="foto-perfil avatar-mini">
-                            <img src="{{ $resena->user->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($resena->user->name) . '&background=6366f1&color=fff' }}" alt="{{ $resena->user->name }}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                            <img src="{{ $resena->user->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($resena->user->name) . '&background=6366f1&color=fff' }}" alt="{{ $resena->user->name }}" class="img-avatar-redonda">
                         </div>
-                        <div class="reseña-usuario-info">
+                        <div class="resena-usuario-info">
                             <div class="font-bold text-small">{{ $resena->user->name }}</div>
-                            <div class="text-yellow text-small reseña-estrellas">
+                            <div class="text-yellow text-small resena-estrellas">
                                 {{ str_repeat('⭐', $resena->puntuacion) }}
                             </div>
                         </div>
                     </div>
-                    <div class="text-small font-bold mb-1 reseña-titulo-obra">{{ $resena->contenido->titulo }}</div>
-                    <p class="text-gray text-small reseña-comentario">"{{ Str::limit($resena->comentario, 80) }}"</p>
+                    <div class="text-small font-bold mb-1 resena-titulo-obra">{{ $resena->contenido->titulo }}</div>
+                    <p class="text-gray text-small resena-comentario">"{{ Str::limit($resena->comentario, 80) }}"</p>
                 </a>
             @endforeach
         </div>
     @else
-        <p class="text-gray seccion-reseñas">Aún no hay reseñas en la plataforma. ¡Anímate a ser el primero!</p>
+        <p class="text-gray seccion-resenas-inicio">Aún no hay reseñas en la plataforma. ¡Anímate a ser el primero!</p>
     @endif
 
-    <!-- Botón Sorpréndeme -->
+    <!-- Modal Sorpréndeme -->
     <div id="modalSorprendeme" class="modal-sorprendeme">
         <div class="modal-sorprendeme-content">
             <span class="modal-sorprendeme-close" onclick="cerrarModalSorprendeme()">&times;</span>
@@ -89,7 +89,7 @@
                     <h3 id="modalSorprendemeTitle" class="modal-sorprendeme-title"></h3>
                     <p id="modalSorprendemeDesc" class="modal-sorprendeme-desc"></p>
                     <div class="modal-sorprendeme-buttons">
-                        <button class="boton boton-secundario modal-btn-otra-vez" onclick="cargarSorpresaAleatoria()">Otra vez</button>
+                        <button class="boton boton-contorno modal-btn-otra-vez" onclick="cargarSorpresaAleatoria()">Otra vez</button>
                         <a id="modalSorprendemeBtn" href="#" class="boton boton-primario">Ver</a>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
             }
         }
 
-        // Cerrar modal al hacer click fuera
+        // Cerrar modal al hacer clic fuera
         window.addEventListener('click', function(e) {
             const modal = document.getElementById('modalSorprendeme');
             if (e.target === modal) {

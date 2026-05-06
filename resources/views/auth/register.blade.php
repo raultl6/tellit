@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 </head>
 
-<body style="background-color: #fff;">
+<body>
 
     <a href="{{ route('home') }}" class="auth-back-btn">
         ←
@@ -20,7 +20,7 @@
 
             <div class="auth-header">
                 <img src="{{ asset('img/logo.png') }}" alt="Logo" class="auth-logo">
-                <h1 class="site-title auth-title">TELLIT</h1>
+                <h1 class="titulo-sitio auth-title">TELLIT</h1>
                 <p class="text-gray auth-subtitle">Únete a la comunidad</p>
             </div>
 
@@ -52,8 +52,8 @@
                 </div>
 
                 @if ($errors->any())
-                    <div class="register-errors">
-                        <ul>
+                    <div class="alerta-error mb-2">
+                        <ul class="lista-errores">
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
@@ -61,7 +61,7 @@
                     </div>
                 @endif
 
-                <button type="submit" class="boton boton-primario btn-block auth-btn register-btn">Crear
+                <button type="submit" class="boton boton-primario btn-block auth-btn mt-4">Crear
                     Cuenta</button>
             </form>
 

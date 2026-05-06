@@ -3,15 +3,17 @@
 @section('titulo', 'Editar Perfil')
 
 @section('contenido')
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    @push('css')
+        <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    @endpush
 
-    <div class="contenedor" style="max-width: 600px; margin-top: 40px;">
+    <div class="contenedor tarjeta-centrada-sm seccion-pagina">
         <div class="tarjeta">
             <h2 class="mb-4">Editar Perfil</h2>
 
             @if ($errors->any())
-                <div class="alerta alerta-error mb-4 p-3" style="background: #fee2e2; color: #b91c1c; border-radius: 8px;">
-                    <ul style="margin: 0; padding-left: 20px;">
+                <div class="alerta-error mb-4">
+                    <ul class="lista-errores">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -23,38 +25,38 @@
                 @csrf
                 @method('PUT')
 
-                <div class="form-group" style="text-align: center; margin-bottom: 30px;">
-                    <div class="foto-perfil profile-avatar-large" style="margin: 0 auto 15px auto;">
-                        <img id="avatar-preview" src="{{ $user->avatar ?? 'https://ui-avatars.com/api/?name=' . $user->name }}" alt="Avatar" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                <div class="form-group texto-centrado">
+                    <div class="foto-perfil perfil-avatar-grande">
+                        <img id="avatar-preview" src="{{ $user->avatar ?? 'https://ui-avatars.com/api/?name=' . $user->name }}" alt="Avatar" class="img-avatar-redonda">
                     </div>
-                    <label for="avatar" class="boton boton-contorno" style="cursor: pointer; font-size: 0.9rem;">
+                    <label for="avatar" class="boton boton-contorno boton-sm" style="cursor: pointer;">
                         Cambiar foto de perfil
                     </label>
                     <input type="file" name="avatar" id="avatar" accept="image/*" style="display: none;" onchange="previewImage(event)">
                 </div>
 
                 <div class="form-group">
-                    <label for="name" class="font-bold mb-2" style="display: block;">Nombre de usuario</label>
+                    <label for="name" class="font-bold mb-2 etiqueta-formulario">Nombre de usuario</label>
                     <input type="text" name="name" id="name" class="form-input" value="{{ old('name', $user->name) }}" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="email" class="font-bold mb-2" style="display: block;">Correo electrónico</label>
+                    <label for="email" class="font-bold mb-2 etiqueta-formulario">Correo electrónico</label>
                     <input type="email" name="email" id="email" class="form-input" value="{{ old('email', $user->email) }}" required>
                 </div>
 
-                <div class="form-group" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
-                    <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Cambiar Contraseña (Opcional)</h3>
-                    <label for="password" class="font-bold mb-2" style="display: block;">Nueva contraseña</label>
+                <div class="form-group separador-superior mt-4">
+                    <h3 class="mb-2">Cambiar Contraseña (Opcional)</h3>
+                    <label for="password" class="font-bold mb-2 etiqueta-formulario">Nueva contraseña</label>
                     <input type="password" name="password" id="password" class="form-input" placeholder="Déjalo en blanco si no quieres cambiarla">
                 </div>
 
                 <div class="form-group">
-                    <label for="password_confirmation" class="font-bold mb-2" style="display: block;">Confirmar nueva contraseña</label>
+                    <label for="password_confirmation" class="font-bold mb-2 etiqueta-formulario">Confirmar nueva contraseña</label>
                     <input type="password" name="password_confirmation" id="password_confirmation" class="form-input">
                 </div>
 
-                <div class="form-group flex justify-between" style="margin-top: 30px;">
+                <div class="form-group flex justify-between mt-4">
                     <a href="{{ route('profile') }}" class="boton boton-contorno">Cancelar</a>
                     <button type="submit" class="boton boton-primario">Guardar Cambios</button>
                 </div>

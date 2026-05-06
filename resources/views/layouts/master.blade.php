@@ -12,53 +12,53 @@
 
 <body>
     <header>
-        <div class="contenedor header-content">
-            <div class="header-left">
+        <div class="contenedor cabecera-contenido">
+            <div class="cabecera-izq">
                 <a href="{{ url('/') }}"><img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo-img"></a>
-                <button onclick="toggleMenu()" class="menu-btn">☰</button>
-                <a href="{{ url('/') }}" class="site-title">TELLIT</a>
+                <button onclick="toggleMenu()" class="boton-menu">☰</button>
+                <a href="{{ url('/') }}" class="titulo-sitio">TELLIT</a>
             </div>
             <div id="menuDesplegableGlobal" class="menu-desplegable">
-                <a href="{{ url('/') }}" class="menu-item">🏠 Inicio</a>
-                <a href="{{ route('contenidos.index') }}" class="menu-item">🔍 Explorar</a>
-                <a href="{{ route('listas.index') }}" class="menu-item">📑 Mis Listas</a>
+                <a href="{{ url('/') }}" class="elemento-menu">🏠 Inicio</a>
+                <a href="{{ route('contenidos.index') }}" class="elemento-menu">🔍 Explorar</a>
+                <a href="{{ route('listas.index') }}" class="elemento-menu">📑 Mis Listas</a>
                 
-                <div class="dropdown-divider"></div>
+                <div class="separador-menu"></div>
                 @if(Auth::check() && Auth::user()->role == 'admin')
-                    <a href="{{ route('admin.index') }}" class="menu-item admin-link">⚙️ Admin</a>
+                    <a href="{{ route('admin.index') }}" class="elemento-menu enlace-admin">⚙️ Admin</a>
                 @endif
             </div>
-            <div class="header-right">
+            <div class="cabecera-der">
                 @if(!request()->routeIs('home'))
-                <form action="{{ route('contenidos.index') }}" method="GET" class="search-container">
-                    <input type="text" name="query" placeholder="Buscar..." class="search-input" value="{{ request('query') }}">
-                    <button type="submit" class="search-icon-small" style="background:none; border:none; cursor:pointer; padding:0;">🔍</button>
+                <form action="{{ route('contenidos.index') }}" method="GET" class="contenedor-busqueda">
+                    <input type="text" name="query" placeholder="Buscar..." class="input-busqueda" value="{{ request('query') }}">
+                    <button type="submit" class="icono-busqueda">🔍</button>
                 </form>
                 @endif
                 @auth
-                    <div class="cabecera-usuario user-header-container"
+                    <div class="cabecera-usuario contenedor-avatar-usuario"
                         onclick="document.getElementById('menuUsuario').classList.toggle('show')">
-                        <div class="user-info" style="text-align: right;">
+                        <div class="info-usuario">
                             <strong>{{ Auth::user()->name }}</strong>
                         </div>
-                        <div class="foto-perfil user-avatar-container">
+                        <div class="foto-perfil contenedor-avatar">
                             <img src="{{ Auth::user()->avatar ?? 'https://ui-avatars.com/api/?name=' . Auth::user()->name }}"
-                                alt="Avatar" class="user-avatar-img">
+                                alt="Avatar" class="img-avatar">
                         </div>
 
-                        <!-- User Dropdown -->
-                        <div id="menuUsuario" class="menu-desplegable user-dropdown-menu">
-                            <a href="{{ route('profile') }}" class="menu-item">👤 Mi Perfil</a>
-                            <form action="{{ route('logout') }}" method="POST" class="logout-form">
+                        <!-- Menú desplegable del usuario -->
+                        <div id="menuUsuario" class="menu-desplegable menu-usuario">
+                            <a href="{{ route('profile') }}" class="elemento-menu">👤 Mi Perfil</a>
+                            <form action="{{ route('logout') }}" method="POST" class="formulario-logout">
                                 @csrf
-                                <button type="submit" class="menu-item logout-btn">
+                                <button type="submit" class="elemento-menu boton-logout">
                                     🚪 Cerrar Sesión
                                 </button>
                             </form>
                         </div>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="boton boton-primario login-btn-header">
+                    <a href="{{ route('login') }}" class="boton boton-primario boton-login-cabecera">
                         Iniciar Sesión
                     </a>
                 @endauth
@@ -73,30 +73,27 @@
     <footer>
         <div class="contenedor footer-grid">
             <div>
-                <h3 class="footer-title">TELLIT</h3>
+                <h3 class="footer-titulo">TELLIT</h3>
                 <p class="footer-copyright">© 2026. Todos los derechos reservados.</p>
-                <p style="color: #9ca3af; font-size: 0.8rem; margin-top: 10px;">
-                    Datos proporcionados por <a href="https://www.themoviedb.org/" target="_blank" style="color: #38bdf8; text-decoration: none;">TMDB</a>.
+                <p class="footer-texto-tmdb">
+                    Datos proporcionados por <a href="https://www.themoviedb.org/" target="_blank" class="footer-enlace-tmdb">TMDB</a>.
                 </p>
             </div>
             <div>
-                <h4 class="footer-title">Enlaces</h4>
-                <a href="{{ route('contacto') }}" class="footer-link">Contacto</a>
-                <a href="{{ route('contenidos.index') }}" class="footer-link">Explorar Catálogo</a>
+                <h4 class="footer-titulo">Enlaces</h4>
+                <a href="{{ route('contacto') }}" class="footer-enlace">Contacto</a>
+                <a href="{{ route('contenidos.index') }}" class="footer-enlace">Explorar Catálogo</a>
             </div>
             <div>
-                <h4 class="footer-title">Social</h4>
-                <div style="display: flex; gap: 15px; margin-top: 10px;">
-                    <!-- Twitter -->
-                    <a href="#" style="transition: opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                <h4 class="footer-titulo">Social</h4>
+                <div class="footer-redes">
+                    <a href="#" class="enlace-social">
                         <img src="{{ asset('img/twitter.png') }}" alt="Twitter" width="24" height="24">
                     </a>
-                    <!-- Instagram -->
-                    <a href="#" style="transition: opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                    <a href="#" class="enlace-social">
                         <img src="{{ asset('img/instagram.png') }}" alt="Instagram" width="24" height="24">
                     </a>
-                    <!-- GitHub -->
-                    <a href="https://github.com/raultl6/tellit" target="_blank" style="transition: opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+                    <a href="https://github.com/raultl6/tellit" target="_blank" class="enlace-social">
                         <img src="{{ asset('img/github.png') }}" alt="GitHub" width="24" height="24">
                     </a>
                 </div>
@@ -107,11 +104,11 @@
     <script>
         function toggleMenu() { document.getElementById('menuDesplegableGlobal').classList.toggle('show'); }
         document.addEventListener('click', function (e) {
-            // Cerrar menu principal
-            if (!document.getElementById('menuDesplegableGlobal').contains(e.target) && !document.querySelector('.menu-btn').contains(e.target)) {
+            // Cerrar menú principal
+            if (!document.getElementById('menuDesplegableGlobal').contains(e.target) && !document.querySelector('.boton-menu').contains(e.target)) {
                 document.getElementById('menuDesplegableGlobal').classList.remove('show');
             }
-            // Cerrar menu de usuario
+            // Cerrar menú de usuario
             const userDropdown = document.getElementById('menuUsuario');
             const userHeader = document.querySelector('.cabecera-usuario');
             if (userDropdown && userHeader && !userDropdown.contains(e.target) && !userHeader.contains(e.target)) {

@@ -6,6 +6,8 @@ use App\Models\Contenido;
 use App\Models\Categoria;
 use App\Models\Resena;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ContenidoController extends Controller
 {
@@ -36,8 +38,8 @@ class ContenidoController extends Controller
         $contenido = Contenido::where('slug', $slug)->firstOrFail();
         
         $listasUsuario = [];
-        if (\Illuminate\Support\Facades\Auth::check()) {
-            $listasUsuario = \Illuminate\Support\Facades\Auth::user()->listas()->get();
+        if (Auth::check()) {
+            $listasUsuario = Auth::user()->listas()->get();
         }
 
         return view('contenidos.show', compact('contenido', 'listasUsuario'));
@@ -60,7 +62,7 @@ class ContenidoController extends Controller
             if ($request->wantsJson()) {
                 return response()->json([
                     'titulo' => $contenido->titulo,
-                    'descripcion' => \Illuminate\Support\Str::limit($contenido->descripcion, 200),
+                    'descripcion' => Str::limit($contenido->descripcion, 200),
                     'imagen_url' => $contenido->imagen_url,
                     'url' => route('contenidos.show', $contenido->slug)
                 ]);

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class ListaController extends Controller
 {
     /**
-     * Display a listing of the user's lists.
+     * Mostrar todas las listas del usuario autenticado.
      */
     public function index()
     {
@@ -19,7 +19,7 @@ class ListaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostrar el formulario para crear una nueva lista.
      */
     public function create()
     {
@@ -27,7 +27,7 @@ class ListaController extends Controller
     }
 
     /**
-     * Store a newly created list in storage.
+     * Guardar una nueva lista en la base de datos.
      */
     public function store(Request $request)
     {
@@ -45,7 +45,7 @@ class ListaController extends Controller
     }
 
     /**
-     * Display the specified list and its contents.
+     * Mostrar una lista y sus contenidos.
      */
     public function show(Lista $lista)
     {
@@ -59,7 +59,7 @@ class ListaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified list.
+     * Mostrar el formulario para editar una lista.
      */
     public function edit(Lista $lista)
     {
@@ -71,7 +71,7 @@ class ListaController extends Controller
     }
 
     /**
-     * Update the specified list in storage.
+     * Actualizar una lista en la base de datos.
      */
     public function update(Request $request, Lista $lista)
     {
@@ -93,7 +93,7 @@ class ListaController extends Controller
     }
 
     /**
-     * Remove the specified list from storage.
+     * Eliminar una lista de la base de datos.
      */
     public function destroy(Lista $lista)
     {
@@ -107,7 +107,7 @@ class ListaController extends Controller
     }
 
     /**
-     * Toggle a content item in the specified list (add if missing, remove if exists).
+     * Alternar un contenido en una lista (añadir si no está, quitar si ya está).
      */
     public function toggleContenido(Request $request, Lista $lista)
     {

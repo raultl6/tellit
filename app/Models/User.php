@@ -13,21 +13,18 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
+     * Campos permitidos para asignación masiva.
      */
     protected $fillable = [
         'name',
         'email',
         'password',
         'role',
+        'avatar',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
+     * Campos ocultos en la serialización.
      */
     protected $hidden = [
         'password',
@@ -35,9 +32,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
+     * Campos que se transforman automáticamente.
      */
     protected $casts = [
         'email_verified_at' => 'datetime',

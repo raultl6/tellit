@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     @endpush
 
-    <div style="padding-top: 2rem;">
+    <div class="padding-admin">
         <h2 class="text-center mb-4">Panel de Administración</h2>
 
         <div class="caja-nav-admin">
@@ -18,12 +18,12 @@
         </div>
 
         @if(session('success'))
-            <div class="alerta alerta-exito mb-4 p-3 mt-4" style="background: #10b981; color: white; border-radius: 4px;">
+            <div class="alerta-exito-admin mb-4 p-3 mt-4">
                 {{ session('success') }}
             </div>
         @endif
         @if(session('error'))
-            <div class="alerta alerta-error mb-4 p-3 mt-4" style="background: #ef4444; color: white; border-radius: 4px;">
+            <div class="alerta-error-admin mb-4 p-3 mt-4">
                 {{ session('error') }}
             </div>
         @endif
@@ -36,7 +36,7 @@
                         <th>Fecha</th>
                         <th>Usuario</th>
                         <th>Película</th>
-                        <th>Rating</th>
+                        <th>Puntuación</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
@@ -51,7 +51,7 @@
                                 <form action="{{ route('admin.reviews.destroy', $resena->id) }}" method="POST" onsubmit="return confirm('¿Confirmar el borrado de esta reseña?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="action-link-delete" style="background: none; border: none; cursor: pointer; padding: 0;">[Borrar]</button>
+                                    <button type="submit" class="enlace-accion-borrar">[Borrar]</button>
                                 </form>
                             </td>
                         </tr>

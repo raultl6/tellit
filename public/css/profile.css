@@ -1,50 +1,50 @@
 /* --- Estilos para la zona de perfil del usuario --- */
 
-.profile-sidebar-layout {
+.perfil-disposicion-lateral {
     display: flex;
     gap: 40px;
     padding-top: 40px;
-    padding-bottom: 60px; /* Separación respecto al footer */
+    padding-bottom: 60px;
 }
 
-.profile-sidebar {
+.perfil-barra-lateral {
     width: 280px;
     flex-shrink: 0;
-    align-self: center; /* Centra la barra verticalmente respecto al contenido de la derecha */
+    align-self: center;
 }
 
-.profile-content-area {
+.perfil-area-contenido {
     flex-grow: 1;
 }
 
 .caja-lateral-perfil {
     background: white;
-    padding: 35px 30px; /* Padding ajustado para que quede compacta pero respire */
+    padding: 35px 30px;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     text-align: center;
 }
 
-.profile-avatar-large {
+.perfil-avatar-grande {
     width: 80px;
     height: 80px;
     font-size: 2.5rem;
     margin: 0 auto 15px auto;
 }
 
-.profile-edit-link {
+.perfil-enlace-editar {
     color: var(--primary);
     font-size: 0.9rem;
     text-decoration: none;
 }
 
-.profile-actions {
-    margin-top: 25px; /* Margen fijo para que se mantenga cerca de la información superior */
-    width: 100%; /* Asegura que los botones ocupen todo el ancho */
+.perfil-acciones {
+    margin-top: 25px;
+    width: 100%;
     text-align: left;
 }
 
-.profile-logout-btn {
+.perfil-boton-logout {
     color: var(--text-red);
     border: 1px solid #fee2e2;
     background: #fef2f2;
@@ -53,23 +53,23 @@
     cursor: pointer;
 }
 
-.profile-logout-btn:hover {
+.perfil-boton-logout:hover {
     background-color: #fecaca;
 }
 
-/* Sección de las listas de usuario (tipo tarjetas) */
-.profile-section-header {
+/* Cabecera de sección con título y botones */
+.perfil-cabecera-seccion {
     display: flex;
     justify-content: space-between;
     margin-bottom: 24px;
     align-items: center;
 }
 
-.profile-section-header h3 {
+.perfil-cabecera-seccion h3 {
     margin: 0;
 }
 
-.create-list-btn {
+.boton-crear-lista {
     background: #374151;
     color: white;
     padding: 8px 16px;
@@ -78,76 +78,78 @@
     border-radius: 8px;
 }
 
-.list-card-terror {
+/* Estilos para las tarjetas de listas en el perfil */
+.tarjeta-lista-terror {
     background: #fef2f2;
     border-color: #fee2e2;
 }
 
-.list-card-terror h4 {
+.tarjeta-lista-terror h4 {
     color: #991b1b;
 }
 
-.list-card-terror p {
+.tarjeta-lista-terror p {
     color: #b91c1c;
     font-size: 0.9rem;
 }
 
-.list-card-favs {
+.tarjeta-lista-favs {
     background: #fffbeb;
     border-color: #fef3c7;
 }
 
-.list-card-favs h4 {
+.tarjeta-lista-favs h4 {
     color: #92400e;
 }
 
-.list-card-favs p {
+.tarjeta-lista-favs p {
     color: #b45309;
     font-size: 0.9rem;
 }
 
-/* Sección del historial completo de reseñas */
-.profile-history-title {
+/* Sección del historial de reseñas */
+.perfil-titulo-historial {
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid #eee;
 }
 
-.profile-reviews-list {
+.perfil-lista-resenas {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-height: 340px; /* Aprox. 3 elementos visibles (100px por elemento + gap) */
+    max-height: 340px;
     overflow-y: auto;
-    padding-right: 10px; /* Espacio para la barra de scroll */
+    padding-right: 10px;
 }
 
-/* Estilizar la barra de scroll (opcional para un diseño más limpio) */
-.profile-reviews-list::-webkit-scrollbar {
+/* Estilos de la barra de scroll */
+.perfil-lista-resenas::-webkit-scrollbar {
     width: 8px;
 }
 
-.profile-reviews-list::-webkit-scrollbar-track {
+.perfil-lista-resenas::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 4px;
 }
 
-.profile-reviews-list::-webkit-scrollbar-thumb {
+.perfil-lista-resenas::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 4px;
 }
 
-.profile-reviews-list::-webkit-scrollbar-thumb:hover {
+.perfil-lista-resenas::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
 }
 
-.profile-review-item {
+/* Elementos individuales de reseña en el perfil */
+.perfil-resena-item {
     display: flex;
     align-items: flex-start;
     gap: 15px;
 }
 
-.profile-review-poster {
+.perfil-resena-poster {
     width: 60px;
     height: 80px;
     margin: 0;
@@ -159,35 +161,44 @@
     border-radius: 4px;
 }
 
-.profile-review-content {
+.perfil-resena-contenido {
     flex: 1;
 }
 
-.profile-review-header {
+.perfil-resena-cabecera {
     display: flex;
     justify-content: space-between;
 }
 
-.profile-review-title {
+.perfil-resena-titulo {
     margin: 0;
 }
 
-.profile-review-text {
+.perfil-resena-texto {
     margin-top: 5px;
 }
 
-.profile-review-date {
+.perfil-resena-fecha {
     font-size: 0.9rem;
     color: #999;
     margin-top: 5px;
 }
 
+/* Enlace para ver todas las listas */
+.perfil-enlace-ver-todas {
+    text-decoration: none;
+    color: #6b7280;
+    margin-right: 15px;
+    font-size: 0.9rem;
+}
+
+/* Responsive del perfil */
 @media (max-width: 768px) {
-    .profile-sidebar-layout {
+    .perfil-disposicion-lateral {
         flex-direction: column;
     }
 
-    .profile-sidebar {
+    .perfil-barra-lateral {
         width: 100%;
         margin-bottom: 20px;
     }

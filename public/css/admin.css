@@ -1,5 +1,6 @@
-/* --- Estilos para el panel de Admin --- */
+/* --- Estilos para el panel de Administración --- */
 
+/* Barra de navegación del admin */
 .caja-nav-admin {
     background: #1f2937;
     padding: 15px;
@@ -34,39 +35,26 @@
     border: 1px solid #dc2626;
 }
 
-.tabla-admin {
-    width: 100%;
-    border-collapse: collapse;
+/* Contenedor del panel */
+.padding-admin {
+    padding-top: 2rem;
 }
 
-.tabla-admin th {
-    text-align: left;
-    border-bottom: 2px solid #eee;
-    padding: 10px;
-}
-
-.tabla-admin td {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.action-link-edit {
+/* Enlaces de acción en tablas */
+.enlace-accion-editar {
     color: var(--primary);
     margin-right: 10px;
 }
 
-.action-link-delete {
+.enlace-accion-borrar {
     color: var(--text-red);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
-.text-green {
-    color: green;
-}
-
-.text-red {
-    color: red;
-}
-
+/* Botones pequeños para tablas */
 .btn-sm {
     padding: 5px 10px;
     font-size: 0.8rem;
@@ -75,4 +63,127 @@
 .btn-neutral {
     background: #eee;
     color: #333;
+}
+
+/* Celdas de acción en las tablas */
+.celda-acciones {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.texto-tu {
+    font-size: 0.8rem;
+}
+
+/* Email secundario en tabla de contactos */
+.email-secundario {
+    color: #6b7280;
+}
+
+.celda-mensaje {
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.boton-borrar-contacto {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    background: #ef4444;
+}
+
+/* --- Buscador TMDB (importar contenido) --- */
+.tmdb-search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.tmdb-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    margin-top: 5px;
+    z-index: 10;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.tmdb-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #374151;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.tmdb-item:hover {
+    background: #374151;
+}
+
+.tmdb-item:last-child {
+    border-bottom: none;
+}
+
+.tmdb-poster {
+    width: 50px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #111827;
+}
+
+.tmdb-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+}
+
+.tmdb-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+
+.type-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    background: #00b4d8;
+    color: white;
+    margin-top: 5px;
+}
+
+.type-badge.tv {
+    background: #8b5cf6;
+}
+
+/* Campo de búsqueda TMDB */
+.input-tmdb {
+    padding: 12px;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+.loader-tmdb {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    display: none;
+    color: #00b4d8;
+    font-size: 0.9rem;
+}
+
+.boton-cancelar-tmdb {
+    background: transparent;
+    border: 1px solid #4b5563;
 }

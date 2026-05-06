@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 </head>
 
-<body style="background-color: #f3f4f6;">
+<body>
 
     <a href="{{ route('home') }}" class="auth-back-btn"> ← </a>
 
@@ -18,12 +18,12 @@
 
             <div class="auth-header">
                 <img src="{{ asset('img/logo.png') }}" alt="Logo" class="auth-logo">
-                <h1 class="site-title auth-title">TELLIT</h1>
+                <h1 class="titulo-sitio auth-title">TELLIT</h1>
                 <p class="text-gray auth-subtitle">Bienvenido de nuevo</p>
             </div>
 
             @if(session('error'))
-                <div class="auth-errors" style="background: #fee2e2; color: #b91c1c; padding: 10px; border-radius: 6px; margin-bottom: 20px; text-align: center;">
+                <div class="alerta-error mb-4 text-center">
                     {{ session('error') }}
                 </div>
             @endif

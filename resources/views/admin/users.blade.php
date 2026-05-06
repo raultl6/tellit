@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     @endpush
 
-    <div style="padding-top: 2rem;">
+    <div class="padding-admin">
         <h2 class="text-center mb-4">Panel de Administración</h2>
 
         <div class="caja-nav-admin">
@@ -18,12 +18,12 @@
         </div>
 
         @if(session('success'))
-            <div class="alerta alerta-exito mb-4 p-3 mt-4" style="background: #10b981; color: white; border-radius: 4px;">
+            <div class="alerta-exito-admin mb-4 p-3 mt-4">
                 {{ session('success') }}
             </div>
         @endif
         @if(session('error'))
-            <div class="alerta alerta-error mb-4 p-3 mt-4" style="background: #ef4444; color: white; border-radius: 4px;">
+            <div class="alerta-error-admin mb-4 p-3 mt-4">
                 {{ session('error') }}
             </div>
         @endif
@@ -55,11 +55,11 @@
                             </td>
                             <td>
                                 @if($usuario->id !== auth()->id())
-                                    <div style="display: flex; gap: 10px; justify-content: flex-start;">
-                                        <form action="{{ route('admin.users.ban', $usuario->id) }}" method="POST" onsubmit="return confirm('¿Confirmar acción sobre este usuario?');" style="margin: 0;">
+                                    <div class="celda-acciones">
+                                        <form action="{{ route('admin.users.ban', $usuario->id) }}" method="POST" onsubmit="return confirm('¿Confirmar acción sobre este usuario?');" class="m-0">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="action-link-delete" style="background: none; border: none; cursor: pointer; padding: 0;">
+                                            <button type="submit" class="enlace-accion-borrar">
                                                 @if($usuario->is_banned)
                                                     <span class="text-gray">[Desbanear]</span>
                                                 @else
@@ -67,16 +67,16 @@
                                                 @endif
                                             </button>
                                         </form>
-                                        <form action="{{ route('admin.users.destroy', $usuario->id) }}" method="POST" onsubmit="return confirm('ATENCIÓN: ¿Estás seguro de que quieres eliminar a este usuario permanentemente? Esta acción no se puede deshacer e implicará borrar todo su contenido asociado (reseñas, listas, etc).');" style="margin: 0;">
+                                        <form action="{{ route('admin.users.destroy', $usuario->id) }}" method="POST" onsubmit="return confirm('ATENCIÓN: ¿Estás seguro de que quieres eliminar a este usuario permanentemente? Esta acción no se puede deshacer e implicará borrar todo su contenido asociado (reseñas, listas, etc).');" class="m-0">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="action-link-delete" style="background: none; border: none; cursor: pointer; padding: 0; color: #dc2626;">
+                                            <button type="submit" class="enlace-accion-borrar" style="color: #dc2626;">
                                                 [Eliminar]
                                             </button>
                                         </form>
                                     </div>
                                 @else
-                                    <span class="text-gray" style="font-size: 0.8rem;">(Tú)</span>
+                                    <span class="text-gray texto-tu">(Tú)</span>
                                 @endif
                             </td>
                         </tr>

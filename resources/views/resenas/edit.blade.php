@@ -3,17 +3,17 @@
 @section('titulo', 'Editar Reseña')
 
 @section('contenido')
-<div class="contenedor" style="padding: 50px 0;">
-    <div class="tarjeta" style="max-width: 650px; margin: 0 auto;">
-        <h2 class="section-title">Editar tu Reseña</h2>
+<div class="contenedor pagina-formulario">
+    <div class="tarjeta tarjeta-centrada">
+        <h2 class="titulo-seccion">Editar tu Reseña</h2>
         
-        <p class="text-gray" style="margin-bottom: 25px;">
-            Estás modificando tu reseña para: <strong style="color: var(--primary);">{{ $resena->contenido->titulo }}</strong>
+        <p class="text-gray mb-4">
+            Estás modificando tu reseña para: <strong class="resena-titulo-obra">{{ $resena->contenido->titulo }}</strong>
         </p>
 
         @if ($errors->any())
-            <div style="background-color: #fee2e2; color: #991b1b; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <ul style="margin: 0; padding-left: 20px;">
+            <div class="alerta-error mb-4">
+                <ul class="lista-errores">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
@@ -25,29 +25,29 @@
             @csrf
             @method('PUT')
             
-            <!-- Aseguramos que se envía el contenido_id para que no falle la validación -->
+            <!-- Se envía el contenido_id para que no falle la validación -->
             <input type="hidden" name="contenido_id" value="{{ $resena->contenido_id }}">
 
             <div class="form-group mb-4">
-                <label class="font-bold mb-2" style="display: block;">Puntuación:</label>
+                <label class="font-bold mb-2 etiqueta-formulario">Puntuación:</label>
                 <div id="star-rating" class="review-stars-interactive" data-old-value="{{ old('puntuacion', $resena->puntuacion) }}">
-                    <span class="star interactive-star" data-value="1">★</span>
-                    <span class="star interactive-star" data-value="2">★</span>
-                    <span class="star interactive-star" data-value="3">★</span>
-                    <span class="star interactive-star" data-value="4">★</span>
-                    <span class="star interactive-star" data-value="5">★</span>
+                    <span class="star estrella-interactiva" data-value="1">★</span>
+                    <span class="star estrella-interactiva" data-value="2">★</span>
+                    <span class="star estrella-interactiva" data-value="3">★</span>
+                    <span class="star estrella-interactiva" data-value="4">★</span>
+                    <span class="star estrella-interactiva" data-value="5">★</span>
                 </div>
                 <input type="hidden" name="puntuacion" id="puntuacion_input" value="{{ old('puntuacion', $resena->puntuacion) }}" required>
             </div>
 
             <div class="form-group mb-4">
-                <label for="comentario" class="font-bold mb-2" style="display: block;">Tu Comentario:</label>
+                <label for="comentario" class="font-bold mb-2 etiqueta-formulario">Tu Comentario:</label>
                 <textarea name="comentario" id="comentario"
                     class="form-textarea" rows="6"
                     placeholder="Escribe aquí..." required>{{ old('comentario', $resena->comentario) }}</textarea>
             </div>
 
-            <div class="flex gap-2" style="padding-top: 20px; border-top: 1px solid #eee; margin-top: 10px;">
+            <div class="flex gap-2 separador-superior">
                 <button type="submit" class="boton boton-primario">Actualizar Reseña</button>
                 <a href="{{ route('contenidos.show', $resena->contenido->slug) }}" class="boton boton-contorno">Cancelar</a>
             </div>
@@ -58,7 +58,7 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const stars = document.querySelectorAll('.interactive-star');
+        const stars = document.querySelectorAll('.estrella-interactiva');
         const input = document.getElementById('puntuacion_input');
         const ratingContainer = document.getElementById('star-rating');
         const oldValue = ratingContainer.getAttribute('data-old-value');
@@ -84,14 +84,6 @@
                 input.value = this.getAttribute('data-value');
                 highlightStars(input.value);
             });
-            
-            star.style.cursor = 'pointer';
-            star.style.fontSize = '2.5rem'; 
-            star.style.transition = 'color 0.2s ease-in-out';
-            
-            if(!input.value && !oldValue) {
-                star.style.color = '#ddd';
-            }
         });
     });
 </script>

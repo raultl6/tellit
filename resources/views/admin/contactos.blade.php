@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     @endpush
 
-    <div style="padding-top: 2rem;">
+    <div class="padding-admin">
         <h2 class="text-center mb-4">Panel de Administración</h2>
 
         <div class="caja-nav-admin">
@@ -18,49 +18,47 @@
         </div>
 
         @if(session('success'))
-            <div class="alerta alerta-exito mb-4 p-3 mt-4" style="background: #10b981; color: white; border-radius: 4px;">
+            <div class="alerta-exito-admin mb-4 p-3 mt-4">
                 {{ session('success') }}
             </div>
         @endif
         @if(session('error'))
-            <div class="alerta alerta-error mb-4 p-3 mt-4" style="background: #ef4444; color: white; border-radius: 4px;">
+            <div class="alerta-error-admin mb-4 p-3 mt-4">
                 {{ session('error') }}
             </div>
         @endif
 
         <div class="tarjeta mt-4">
             <h3 class="mb-4">Mensajes de Contacto</h3>
-            <table class="tabla-admin" style="width: 100%; text-align: left; border-collapse: collapse;">
+            <table class="tabla-admin">
                 <thead>
                     <tr>
-                        <th style="padding: 10px; border-bottom: 2px solid #ddd;">Usuario</th>
-                        <th style="padding: 10px; border-bottom: 2px solid #ddd;">Asunto</th>
-                        <th style="padding: 10px; border-bottom: 2px solid #ddd;">Mensaje</th>
-                        <th style="padding: 10px; border-bottom: 2px solid #ddd;">Acciones</th>
+                        <th>Usuario</th>
+                        <th>Asunto</th>
+                        <th>Mensaje</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($contactos as $contacto)
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 10px;">
+                        <tr>
+                            <td>
                                 <strong>{{ $contacto->nombre }}</strong><br>
-                                <small style="color: #6b7280;">{{ $contacto->email }}</small>
+                                <small class="email-secundario">{{ $contacto->email }}</small>
                             </td>
-                            <td style="padding: 10px;">{{ $contacto->asunto }}</td>
-                            <td style="padding: 10px; max-width: 300px; word-wrap: break-word;">{{ $contacto->mensaje }}</td>
-                            <td style="padding: 10px;">
-                                <div style="display: flex; gap: 5px;">
-                                    <form action="{{ route('admin.contactos.destroy', $contacto->id) }}" method="POST" onsubmit="return confirm('¿Borrar este mensaje de forma permanente?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="boton btn-mint btn-sm" style="padding: 4px 10px; font-size: 0.8rem; background: #ef4444;">Borrar</button>
-                                    </form>
-                                </div>
+                            <td>{{ $contacto->asunto }}</td>
+                            <td class="celda-mensaje">{{ $contacto->mensaje }}</td>
+                            <td>
+                                <form action="{{ route('admin.contactos.destroy', $contacto->id) }}" method="POST" onsubmit="return confirm('¿Borrar este mensaje de forma permanente?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="boton boton-borrar-contacto btn-sm">Borrar</button>
+                                </form>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center" style="padding: 20px;">No hay mensajes de contacto.</td>
+                            <td colspan="4" class="text-center p-3">No hay mensajes de contacto.</td>
                         </tr>
                     @endforelse
                 </tbody>

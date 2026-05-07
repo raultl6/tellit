@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         // 1. USUARIOS
         // =========================================================
         $adminId = DB::table('users')->insertGetId([
-            'name'       => 'Admin Tellit',
+            'name'       => 'Admin',
             'email'      => 'admin@tellit.com',
             'password'   => Hash::make('12345678'),
             'role'       => 'admin',

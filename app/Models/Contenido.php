@@ -41,4 +41,4 @@ class Contenido extends Model
         return $this->belongsToMany(Lista::class, 'contenido_lista')
                     ->withTimestamps();
     }
-}
+}

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TELLIT - Registro</title>
-    <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 </head>
@@ -28,8 +27,7 @@
             <form action="{{ route('register.post') }}" method="POST">
                 @csrf
                 <div class="form-group auth-form-group">
-                    <label class="auth-label">Nombre de
-                        Usuario</label>
+                    <label class="auth-label">Nombre de Usuario</label>
                     <input type="text" name="name" class="form-input auth-input" placeholder="Ej: Cinefilo23" required>
                 </div>
 
@@ -62,8 +60,7 @@
                     </div>
                 @endif
 
-                <button type="submit" class="boton boton-primario btn-block auth-btn mt-4">Crear
-                    Cuenta</button>
+                <button type="submit" class="boton boton-primario btn-block auth-btn mt-4">Crear Cuenta</button>
             </form>
 
             <div class="auth-footer">

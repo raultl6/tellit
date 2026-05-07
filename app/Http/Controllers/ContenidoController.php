@@ -24,7 +24,7 @@ class ContenidoController extends Controller
         }
 
         // 1. Trae el contenido filtrado
-        $contenidos = $query->get();
+        $contenidos = $query->with('resenas')->get();
 
         // 2. Trae las categorías para el filtro del sidebar
         $categorias = Categoria::all();
@@ -35,7 +35,7 @@ class ContenidoController extends Controller
 
     public function show($slug)
     {
-        $contenido = Contenido::where('slug', $slug)->firstOrFail();
+        $contenido = Contenido::with('resenas.user')->where('slug', $slug)->firstOrFail();
         
         $listasUsuario = [];
         if (Auth::check()) {

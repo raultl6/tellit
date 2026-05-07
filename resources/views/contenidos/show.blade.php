@@ -51,7 +51,9 @@
                 <span class="etiqueta">{{ $contenido->categoria->nombre }}</span>
                 <span class="etiqueta">{{ $contenido->año }}</span>
                 <span class="etiqueta">{{ $contenido->duracion ?? 'N/A' }}</span>
-                <span class="etiqueta etiqueta-puntuacion">★ {{ $contenido->puntuacion }}</span>
+                @if($contenido->resenas->count() > 0)
+                    <span class="etiqueta etiqueta-puntuacion">★ {{ number_format($contenido->resenas->avg('puntuacion'), 1) }}</span>
+                @endif
             </div>
 
             <p class="descripcion-detalles">
@@ -177,7 +179,7 @@
                 });
             }
 
-            // Si falló la validación y había valor anterior, restaurarlo
+            // Si falla la validación y había valor anterior, restaurarlo
             if (oldValue) highlightStars(oldValue);
 
             stars.forEach(star => {

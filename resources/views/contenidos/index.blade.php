@@ -44,7 +44,9 @@
 
                         <div class="meta-tarjeta-contenido">
                             <span>{{ $contenido->año }}</span>
-                            <span class="puntuacion-tarjeta">★ {{ $contenido->puntuacion }}</span>
+                            @if($contenido->resenas->count() > 0)
+                                <span class="puntuacion-tarjeta">★ {{ number_format($contenido->resenas->avg('puntuacion'), 1) }}</span>
+                            @endif
                         </div>
                     </a>
                 @endforeach

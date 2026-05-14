@@ -17,11 +17,10 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('avatar')->nullable(); // Ruta de la foto
+            $table->string('avatar')->nullable(); // Ruta de la foto de perfil
             $table->enum('role', ['user', 'admin'])->default('user'); // Admin o Usuario normal
-            $table->boolean('banned')->default(false);
+            $table->boolean('is_banned')->default(false); // Gestión de bloqueo de usuarios
 
             $table->rememberToken();
             $table->timestamps();

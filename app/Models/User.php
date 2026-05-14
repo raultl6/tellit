@@ -21,6 +21,7 @@ class User extends Authenticatable
         'password',
         'role',
         'avatar',
+        'is_banned',
     ];
 
     /**
@@ -35,7 +36,7 @@ class User extends Authenticatable
      * Campos que se transforman automáticamente.
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'is_banned' => 'boolean',
     ];
 
     /**

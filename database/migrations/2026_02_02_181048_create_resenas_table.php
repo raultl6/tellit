@@ -17,7 +17,6 @@ class CreateResenasTable extends Migration
             $table->id();
             $table->integer('puntuacion'); // 1 a 5
             $table->text('comentario');
-            $table->integer('likes')->default(0); // Contador simple
 
             // Relaciones
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

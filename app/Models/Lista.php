@@ -12,7 +12,6 @@ class Lista extends Model
     protected $fillable = [
         'nombre',
         'descripcion',
-        'publica',
         'user_id',
     ];
 

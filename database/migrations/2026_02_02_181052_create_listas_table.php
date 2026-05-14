@@ -17,7 +17,6 @@ class CreateListasTable extends Migration
             $table->id();
             $table->string('nombre'); // Ej: "Para llorar"
             $table->text('descripcion')->nullable();
-            $table->boolean('publica')->default(true); // ¿Es pública o privada?
 
             // Dueño de la lista
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

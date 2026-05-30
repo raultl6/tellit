@@ -10,9 +10,9 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        // =========================================================
+        
         // 1. USUARIOS
-        // =========================================================
+        
         $adminId = DB::table('users')->insertGetId([
             'name'       => 'Admin',
             'email'      => 'admin@tellit.com',
@@ -40,9 +40,9 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // =========================================================
+        
         // 2. CATEGORÍAS
-        // =========================================================
+        
         $catAccion = DB::table('categorias')->insertGetId([
             'nombre'      => 'Acción',
             'slug'        => 'accion',
@@ -83,9 +83,9 @@ class DatabaseSeeder extends Seeder
             'updated_at'  => now(),
         ]);
 
-        // =========================================================
+        
         // 3. CONTENIDOS (Series)
-        // =========================================================
+        
         $dark = DB::table('contenidos')->insertGetId([
             'titulo'       => 'Dark',
             'slug'         => 'dark',
@@ -176,9 +176,9 @@ class DatabaseSeeder extends Seeder
             'updated_at'   => now()->subDays(1),
         ]);
 
-        // =========================================================
+        
         // 4. RESEÑAS
-        // =========================================================
+        
         DB::table('resenas')->insert([
             [
                 'user_id'      => $user1Id,
@@ -230,9 +230,9 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        // =========================================================
+        
         // 5. LISTAS
-        // =========================================================
+        
         $lista1 = DB::table('listas')->insertGetId([
             'nombre'      => 'Top Series de Ciencia Ficción',
             'descripcion' => 'Las mejores series de sci-fi y misterio que he visto.',
@@ -259,9 +259,9 @@ class DatabaseSeeder extends Seeder
             ['contenido_id' => $flash,         'lista_id' => $lista2, 'created_at' => now(), 'updated_at' => now()],
         ]);
 
-        // =========================================================
+        
         // 6. MENSAJES DE CONTACTO (para demo del panel admin)
-        // =========================================================
+        
         DB::table('mensaje_contactos')->insert([
             [
                 'nombre'     => 'Laura García',

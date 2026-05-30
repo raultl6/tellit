@@ -57,10 +57,22 @@ class ContenidoController extends Controller
 
     public function random(Request $request)
     {
-        $contenido = Contenido::inRandomOrder()->first();
+        $query = Contenido::inRandomOrder();
+
+        if ($request->filled('exclude')) {
+            $query->where('id', '!=', $request->input('exclude'));
+        }
+
+        $contenido = $query->first();
+
+        // Si no hay resultados (p.ej. solo existe 1 contenido), ignorar el exclude
+        if (!$contenido && $request->filled('exclude')) {
+            $contenido = Contenido::inRandomOrder()->first();
+        }
         if ($contenido) {
             if ($request->wantsJson()) {
                 return response()->json([
+                    'id' => $contenido->id,
                     'titulo' => $contenido->titulo,
                     'descripcion' => Str::limit($contenido->descripcion, 200),
                     'imagen_url' => $contenido->imagen_url,

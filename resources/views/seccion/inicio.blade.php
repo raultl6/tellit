@@ -114,12 +114,19 @@
             document.getElementById('modalSorprendeme').classList.remove('show');
         }
 
+        let lastSorpresaId = null;
+
         async function cargarSorpresaAleatoria() {
             document.getElementById('modalSorprendemeData').classList.remove('cargado');
 
             try {
+                let url = '{{ route('contenidos.random') }}';
+                if (lastSorpresaId) {
+                    url += '?exclude=' + lastSorpresaId;
+                }
+
                 const [response] = await Promise.all([
-                    fetch('{{ route('contenidos.random') }}', {
+                    fetch(url, {
                         headers: {
                             'Accept': 'application/json',
                             'X-Requested-With': 'XMLHttpRequest'
@@ -135,6 +142,8 @@
                     cerrarModalSorprendeme();
                     return;
                 }
+
+                lastSorpresaId = data.id;
                 
                 const img = document.getElementById('modalSorprendemeImg');
                 if (data.imagen_url) {

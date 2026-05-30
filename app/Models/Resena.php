@@ -9,7 +9,7 @@ class Resena extends Model
 {
     use HasFactory;
 
-    // Campos permitidos para carga masiva
+    // Campos que se pueden rellenar al crear o actualizar una reseña
     protected $fillable = [
         'puntuacion',
         'comentario',
@@ -17,17 +17,13 @@ class Resena extends Model
         'user_id',
     ];
 
-    /**
-     * Relación: Una Reseña pertenece a un Usuario.
-     */
+    // Relación "pertenece a": cada reseña fue escrita por un usuario
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Relación: Una Reseña pertenece a un Contenido.
-     */
+    // Relación "pertenece a": cada reseña está asociada a un contenido (película o serie)
     public function contenido()
     {
         return $this->belongsTo(Contenido::class);

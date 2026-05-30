@@ -9,6 +9,8 @@ class Contenido extends Model
 {
     use HasFactory;
 
+    // $fillable define qué campos se pueden rellenar mediante asignación masiva (create, update).
+    // Los campos que no estén aquí se ignoran por seguridad, evitando que alguien modifique campos no permitidos
     protected $fillable = [
         'titulo',
         'slug',
@@ -23,22 +25,24 @@ class Contenido extends Model
         'categoria_id',
     ];
 
-    // Relación: Una peli pertenece a una categoría
+    // Relación "pertenece a": cada contenido tiene una sola categoría (género)
     public function categoria()
     {
         return $this->belongsTo(Categoria::class);
     }
 
-    // Relación: Una peli tiene muchas reseñas
+    // Relación "tiene muchas": un contenido puede tener múltiples reseñas de distintos usuarios
     public function resenas()
     {
         return $this->hasMany(Resena::class);
     }
 
-    // Relación: Una peli puede estar en muchas listas
+    // Relación "muchos a muchos": un contenido puede aparecer en muchas listas de diferentes usuarios.
+    // Se usa la tabla intermedia 'contenido_lista' para almacenar estas asociaciones.
+    // withTimestamps() guarda la fecha de cuándo se añadió a cada lista
     public function listas()
     {
         return $this->belongsToMany(Lista::class, 'contenido_lista')
                     ->withTimestamps();
     }
-}
+}

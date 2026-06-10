@@ -48,7 +48,10 @@
                             <td>{{ Str::limit($resena->contenido->titulo ?? 'Contenido borrado', 20) }}</td>
                             <td>{{ str_repeat('⭐', $resena->puntuacion) }}</td>
                             <td>
-                                <form action="{{ route('admin.reviews.destroy', $resena->id) }}" method="POST" onsubmit="return confirm('¿Confirmar el borrado de esta reseña?');">
+                                @if($resena->contenido)
+                                    <a href="{{ route('contenidos.show', $resena->contenido->slug) }}" class="enlace-accion-ver" target="_blank">[Ver]</a>
+                                @endif
+                                <form action="{{ route('admin.reviews.destroy', $resena->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('¿Confirmar el borrado de esta reseña?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="enlace-accion-borrar">[Borrar]</button>

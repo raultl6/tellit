@@ -46,6 +46,16 @@
     margin-right: 10px;
 }
 
+.enlace-accion-ver {
+    color: var(--primary);
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.enlace-accion-ver:hover {
+    text-decoration: underline;
+}
+
 .enlace-accion-borrar {
     color: var(--text-red);
     background: none;
